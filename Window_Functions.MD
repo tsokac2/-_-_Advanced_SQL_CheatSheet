@@ -11,6 +11,23 @@ The aggregate calculations is simpe tacked on to the query as an additional colu
 
 It is also possible to group these calculations, just like we can with aggregate queries, using PARTITION.
 
+**Query example:**
+```
+SELECT BusinessEntityID
+      ,Bonus * 100
+      ,CommissionPct
+      ,SalesYTD
+	  ,SalesLastYear
+      ,[Total YTD Sales] = SUM(SalesYTD) OVER()
+      ,[Max YTD Sales] = MAX(SalesYTD) OVER()
+      ,[% of Best Performer] = SalesYTD/MAX(SalesYTD) OVER() * 100
+
+FROM AdventureWorks2022.Sales.SalesPerson
+```
+**Results:**
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet
+/blob/main/public/img/Section_01_01.jpg)
+
 ## Window Functions With OVER - Exercises
 #
 
