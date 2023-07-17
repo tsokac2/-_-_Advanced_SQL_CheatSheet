@@ -25,8 +25,7 @@ SELECT BusinessEntityID
 FROM AdventureWorks2022.Sales.SalesPerson
 ```
 **Results:**
-![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet
-/blob/main/public/img/Section_01_01.jpg)
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_01.JPG)
 
 ## Window Functions With OVER - Exercises
 #
