@@ -28,7 +28,6 @@ FROM AdventureWorks2022.Sales.SalesPerson
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet
 /blob/main/public/img/Section_01_01.jpg)
 
-
 ## Window Functions With OVER - Exercises
 #
 
