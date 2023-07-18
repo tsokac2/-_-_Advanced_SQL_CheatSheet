@@ -56,7 +56,7 @@ FROM AdventureWorks2022.HumanResources.EmployeePayHistory A
 	JOIN AdventureWorks2022.HumanResources.Employee C
 		ON A.BusinessEntityID = C.BusinessEntityID
 ```
-**Results:**
+#### Results:
 
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_02.JPG)
 
