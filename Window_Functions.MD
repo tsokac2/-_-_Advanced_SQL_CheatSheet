@@ -26,7 +26,7 @@ FROM AdventureWorks2022.Sales.SalesPerson
 ```
 **Results:**
 
-![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_01.JPG)
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01.JPG)
 
 ## Window Functions With OVER - Exercises
 
@@ -58,27 +58,80 @@ FROM AdventureWorks2022.Person.Person P
 ```
 #### Results:
 
-![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_02.JPG)
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_01.JPG)
 
 ### Exercise 2
 * Enhance your query from Exercise 1 by adding a derived column called
 * "MaximumRate" that returns the largest of all values in the "Rate" column, in each row.
 
 ```
-SELECT 
-  B.FirstName
- ,B.LastName
- ,C.JobTitle
- ,A.Rate
- ,[Average Rate] = AVG(A.Rate) OVER()
- ,[Maximum Rate] = MAX(A.Rate) OVER()
+SELECT
+ P.FirstName
+,P.LastName
+,T.JobTitle
+,R.Rate
+,[AverageRate] = AVG(R.Rate) OVER()
+,[MaximumRate] = MAX(R.Rate) OVER()
 
-FROM AdventureWorks2022.HumanResources.EmployeePayHistory A
-	JOIN AdventureWorks2022.Person.Person B
-		ON A.BusinessEntityID = B.BusinessEntityID
-	JOIN AdventureWorks2022.HumanResources.Employee C
-		ON A.BusinessEntityID = C.BusinessEntityID
+FROM AdventureWorks2022.Person.Person P
+JOIN AdventureWorks2022.HumanResources.Employee T
+	ON P.BusinessEntityID = T.BusinessEntityID
+JOIN AdventureWorks2022.HumanResources.EmployeePayHistory R
+	ON P.BusinessEntityID = R.BusinessEntityID
 ```
+
+#### Results:
+
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_02.JPG)
+
+### Exercise 3
+* Enhance your query from Exercise 2 by adding a derived column called "DiffFromAvgRate" that returns the result of the following calculation:
+* An employees's pay rate, MINUS the average of all values in the "Rate" column.
+
+```
+SELECT
+ P.FirstName
+,P.LastName
+,T.JobTitle
+,R.Rate
+,[AverageRate] = AVG(R.Rate) OVER()
+,[MaximumRate] = MAX(R.Rate) OVER()
+,[DiffFromAvgRate] = R.Rate - AVG(R.Rate) OVER()
+
+FROM AdventureWorks2022.Person.Person P
+JOIN AdventureWorks2022.HumanResources.Employee T
+	ON P.BusinessEntityID = T.BusinessEntityID
+JOIN AdventureWorks2022.HumanResources.EmployeePayHistory R
+	ON P.BusinessEntityID = R.BusinessEntityID
+```
+#### Results:
+
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_03.JPG)
+
+### Exercise 4
+* Enhance your query from Exercise 3 by adding a derived column called "PercentofMaxRate" that returns the result of the following calculation:
+* An employees's pay rate, DIVIDED BY the maximum of all values in the "Rate" column, times 100.
+
+```
+SELECT
+ P.FirstName
+,P.LastName
+,T.JobTitle
+,R.Rate
+,[AverageRate] = AVG(R.Rate) OVER()
+,[MaximumRate] = MAX(R.Rate) OVER()
+,[DiffFromAvgRate] = R.Rate - AVG(R.Rate) OVER()
+,[PercentofMaxRate] = (R.Rate / MAX(R.Rate) OVER()) * 100
+
+FROM AdventureWorks2022.Person.Person P
+JOIN AdventureWorks2022.HumanResources.Employee T
+	ON P.BusinessEntityID = T.BusinessEntityID
+JOIN AdventureWorks2022.HumanResources.EmployeePayHistory R
+	ON P.BusinessEntityID = R.BusinessEntityID
+```
+#### Results:
+
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_04.JPG)
 
 #
 
