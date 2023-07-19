@@ -44,11 +44,34 @@ FROM AdventureWorks2022.Sales.SalesPerson
 #### Solution Exercise 1
 ```
 SELECT 
- B.FirstName,
- B.LastName,
- C.JobTitle,
- A.Rate,
- AverageRate = AVG(A.Rate) OVER()
+ P.FirstName
+,P.LastName
+,T.JobTitle
+,R.Rate
+,[Average Rate] = AVG(R.Rate) OVER()
+
+FROM AdventureWorks2022.Person.Person P
+	JOIN AdventureWorks2022.HumanResources.Employee T
+	    ON P.BusinessEntityID = T.BusinessEntityID
+	JOIN AdventureWorks2022.HumanResources.EmployeePayHistory R
+	    ON R.BusinessEntityID = P.BusinessEntityID
+```
+#### Results:
+
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_02.JPG)
+
+### Exercise 2
+* Enhance your query from Exercise 1 by adding a derived column called
+* "MaximumRate" that returns the largest of all values in the "Rate" column, in each row.
+
+```
+SELECT 
+  B.FirstName
+ ,B.LastName
+ ,C.JobTitle
+ ,A.Rate
+ ,[Average Rate] = AVG(A.Rate) OVER()
+ ,[Maximum Rate] = MAX(A.Rate) OVER()
 
 FROM AdventureWorks2022.HumanResources.EmployeePayHistory A
 	JOIN AdventureWorks2022.Person.Person B
@@ -56,11 +79,6 @@ FROM AdventureWorks2022.HumanResources.EmployeePayHistory A
 	JOIN AdventureWorks2022.HumanResources.Employee C
 		ON A.BusinessEntityID = C.BusinessEntityID
 ```
-#### Results:
-
-![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_02.JPG)
-
-
 
 #
 
