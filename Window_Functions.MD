@@ -34,11 +34,11 @@ FROM AdventureWorks2022.Sales.SalesPerson
 
 **Create a query with the following columns:**
 
-* FirstName and LastName, from the Person.Person table**
-* JobTitle, from the HumanResources.Employee table**
-* Rate, from the HumanResources.EmployeePayHistory table**
+* _FirstName_ and _LastName_, from the **Person.Person table**
+* _JobTitle_, from the **HumanResources.Employee table**
+* _Rate_, from the **HumanResources.EmployeePayHistory table**
 * A derived column called "AverageRate" that returns the average of all values in the "Rate" column, in each row
-* *All the above tables can be joined on **BusinessEntityID***
+* All the above tables can be joined on **BusinessEntityID**
 * All the tables can be ***inner joined***, and you do not need to apply any criteria.
 
 #### Solution Exercise 1
@@ -133,7 +133,6 @@ JOIN AdventureWorks2022.HumanResources.EmployeePayHistory R
 
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_04.JPG)
 #
-
 ## PARTITION BY
 
 Allows us to compute aggregate totals for groups within our data, while still retaining row-level detail.
@@ -143,4 +142,44 @@ Assigns each row of your query output to a group, without collapsing your data i
 Instead of groups being assigned based on the distinct values of ALL the non-aggregated columns of our data, we need to specify the columns these groups will be based on. 
 
 ## PARTITION BY - Exercises
+
+### Exercise 1
+
+**Create a query with the following columns:**
+
+* “Name” from the **Production.Product** table, which can be alised as “ProductName”
+
+* “ListPrice” from the **Production.Product** table
+
+* “Name” from the **Production. ProductSubcategory** table, which can be alised as “ProductSubcategory”*
+
+* “Name” from the **Production.ProductCategory** table, which can be alised as “ProductCategory”**
+
+* Join **Production.ProductSubcategory** to **Production.Product** on “ProductSubcategoryID”
+
+* Join **Production.ProductCategory** to **ProductSubcategory** on “ProductCategoryID”
+
+* All the tables can be inner joined, and you do not need to apply any criteria.
+
+
+#### Solution Exercise 1
+```
+SELECT 
+  ProductName = A.Name,
+  A.ListPrice,
+  ProductSubcategory = B.Name,
+  ProductCategory = C.Name
+
+
+FROM AdventureWorks2022.Production.Product A
+  JOIN AdventureWorks2022.Production.ProductSubcategory B
+    ON A.ProductSubcategoryID = B.ProductSubcategoryID
+  JOIN AdventureWorks2022.Production.ProductCategory C
+    ON B.ProductCategoryID = C.ProductCategoryID
+```
+#### Results:
+
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_05.JPG)
+
+
 #
