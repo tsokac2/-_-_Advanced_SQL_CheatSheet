@@ -228,3 +228,30 @@ FROM AdventureWorks2022.Production.Product A
     ON B.ProductCategoryID = C.ProductCategoryID
 ```
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_07.JPG)
+
+#### Exercise 4
+
+* Enhance your query from Exercise 3 by adding a derived column called
+
+* "ProductVsCategoryDelta" that returns the result of the following calculation:
+
+* A product's list price, MINUS the average ListPrice for that product’s category.
+
+#### Solution Exercise 4
+```
+SELECT 
+  ProductName = A.Name,
+  A.ListPrice,
+  ProductSubcategory = B.Name,
+  ProductCategory = C.Name,
+  AvgPriceByCategory = AVG(A.ListPrice) OVER(PARTITION BY C.Name),
+  AvgPriceByCategoryAndSubcategory = AVG(A.ListPrice) OVER(PARTITION BY C.Name, B.Name),
+  ProductVsCategoryDelta = A.ListPrice - AVG(A.ListPrice) OVER(PARTITION BY C.Name)
+
+FROM AdventureWorks2022.Production.Product A
+  JOIN AdventureWorks2022.Production.ProductSubcategory B
+    ON A.ProductSubcategoryID = B.ProductSubcategoryID
+  JOIN AdventureWorks2022.Production.ProductCategory C
+    ON B.ProductCategoryID = C.ProductCategoryID
+```
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_08.JPG)
