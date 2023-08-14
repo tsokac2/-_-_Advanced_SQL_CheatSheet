@@ -132,10 +132,15 @@ JOIN AdventureWorks2022.HumanResources.EmployeePayHistory R
 #### Results:
 
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_04.JPG)
-
 #
 
 ## PARTITION BY
+
+Allows us to compute aggregate totals for groups within our data, while still retaining row-level detail.
+
+Assigns each row of your query output to a group, without collapsing your data into fewer rows as with GROUP BY.
+
+Instead of groups being assigned based on the distinct values of ALL the non-aggregated columns of our data, we need to specify the columns these groups will be based on. 
 
 ## PARTITION BY - Exercises
 #
