@@ -4,7 +4,7 @@
 * **[Window Functions With OVER](#Window-Functions-With-OVER)**
 * **[PARTITION BY](#PARTITION-BY)**
 
-## Window Functions With OVER
+## OVER()
 Window functions allow you to include aggregate calculations in your queries, WITHOUT otherwise changing the output in any way.
 
 The aggregate calculations are simply tacked on to the query as an additional column.
@@ -28,7 +28,7 @@ FROM AdventureWorks2022.Sales.SalesPerson
 
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01.JPG)
 
-## Window Functions With OVER - Exercises
+## OVER() - Exercises
 
 ### Exercise 1
 
