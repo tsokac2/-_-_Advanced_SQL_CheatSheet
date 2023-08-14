@@ -182,4 +182,25 @@ FROM AdventureWorks2022.Production.Product A
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_05.JPG)
 
 
-#
+#### Exercise 2
+
+* Enhance your query from Exercise 1 by adding a derived column called
+
+* "AvgPriceByCategory " that returns the average ListPrice for the product category in each given row.
+
+#### Solution Exercise 2
+```
+SELECT 
+  ProductName = A.Name,
+  A.ListPrice,
+  ProductSubcategory = B.Name,
+  ProductCategory = C.Name,
+  AvgPriceByCategory = AVG(A.ListPrice) OVER(PARTITION BY C.Name)
+
+FROM AdventureWorks2022.Production.Product A
+  JOIN AdventureWorks2022.Production.ProductSubcategory B
+    ON A.ProductSubcategoryID = B.ProductSubcategoryID
+  JOIN AdventureWorks2022.Production.ProductCategory C
+    ON B.ProductCategoryID = C.ProductCategoryID
+```
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_06.JPG)
