@@ -161,7 +161,6 @@ Instead of groups being assigned based on the distinct values of ALL the non-agg
 
 * All the tables can be inner joined, and you do not need to apply any criteria.
 
-
 #### Solution Exercise 1
 ```
 SELECT 
@@ -255,3 +254,67 @@ FROM AdventureWorks2022.Production.Product A
     ON B.ProductCategoryID = C.ProductCategoryID
 ```
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_08.JPG)
+
+#
+## ROW_NUMBER
+
+### Exercise 1
+
+**Create a query with the following columns:**
+
+* “Name” from the **Production.Product** table, which can be alised as “ProductName”
+
+* “ListPrice” from the **Production.Product** table
+
+* “Name” from the **Production. ProductSubcategory** table, which can be alised as “ProductSubcategory”*
+
+* “Name” from the **Production.ProductCategory** table, which can be alised as “ProductCategory”**
+
+* Join **Production.ProductSubcategory** to **Production.Product** on “ProductSubcategoryID”
+
+* Join **Production.ProductCategory** to **ProductSubcategory** on “ProductCategoryID”
+
+* All the tables can be inner joined, and you do not need to apply any criteria.
+
+#### Solution Exercise 1
+```
+SELECT 
+  ProductName = A.Name,
+  A.ListPrice,
+  ProductSubcategory = B.Name,
+  ProductCategory = C.Name
+
+
+FROM AdventureWorks2022.Production.Product A
+  JOIN AdventureWorks2022.Production.ProductSubcategory B
+    ON A.ProductSubcategoryID = B.ProductSubcategoryID
+  JOIN AdventureWorks2022.Production.ProductCategory C
+    ON B.ProductCategoryID = C.ProductCategoryID
+```
+#### Results:
+
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_05.JPG)
+
+#### Exercise 2
+
+* Enhance your query from Exercise 1 by adding a derived column called
+
+* "Price Rank " that ranks all records in the dataset by ListPrice, in descending order. That is to say, the product with the most expensive price should have a rank of 1, and the product with the least expensive price should have a rank equal to the number of records in the dataset.
+
+#### Solution Exercise 2
+```
+SELECT 
+  ProductName = A.Name,
+  A.ListPrice,
+  ProductSubcategory = B.Name,
+  ProductCategory = C.Name,
+  [Price Rank] = ROW_NUMBER() OVER(ORDER BY A.ListPrice DESC)
+
+
+FROM AdventureWorks2022.Production.Product A
+  JOIN AdventureWorks2022.Production.ProductSubcategory B
+    ON A.ProductSubcategoryID = B.ProductSubcategoryID
+  JOIN AdventureWorks2022.Production.ProductCategory C
+    ON B.ProductCategoryID = C.ProductCategoryI
+```
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_09.JPG)
