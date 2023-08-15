@@ -318,3 +318,58 @@ FROM AdventureWorks2022.Production.Product A
     ON B.ProductCategoryID = C.ProductCategoryI
 ```
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_09.JPG)
+
+#### Exercise 3
+
+* Enhance your query from Exercise 2 by adding a derived column called
+
+* "Category Price Rank" that ranks all products by ListPrice – within each category - in descending order. In other words, every product within a given category should be ranked relative to other products in the same category.
+
+#### Solution Exercise 3
+```
+SELECT 
+  ProductName = A.Name,
+  A.ListPrice,
+  ProductSubcategory = B.Name,
+  ProductCategory = C.Name,
+  [Price Rank] = ROW_NUMBER() OVER(ORDER BY A.ListPrice DESC),
+  [Category Price Rank] = ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC)
+
+
+FROM AdventureWorks2022.Production.Product A
+  JOIN AdventureWorks2022.Production.ProductSubcategory B
+    ON A.ProductSubcategoryID = B.ProductSubcategoryID
+  JOIN AdventureWorks2022.Production.ProductCategory C
+    ON B.ProductCategoryID = C.ProductCategoryID
+```
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_10.JPG)
+
+#### Exercise 4
+
+* Enhance your query from Exercise 3 by adding a derived column called
+
+* "Top 5 Price In Category" that returns the string “Yes” if a product has one of the top 5 list prices in its product category, and “No” if it does not. You can try incorporating your logic from Exercise 3 into a CASE statement to make this work.
+
+#### Solution Exercise 4
+```
+SELECT 
+  ProductName = A.Name,
+  A.ListPrice,
+  ProductSubcategory = B.Name,
+  ProductCategory = C.Name,
+  [Price Rank] = ROW_NUMBER() OVER(ORDER BY A.ListPrice DESC),
+  [Category Price Rank] = ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC),
+  [Top 5 Price In Category] = 
+	CASE 
+		WHEN ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC) <= 5 THEN 'Yes'
+		ELSE 'No'
+	END
+
+
+FROM AdventureWorks2022.Production.Product A
+  JOIN AdventureWorks2022.Production.ProductSubcategory B
+    ON A.ProductSubcategoryID = B.ProductSubcategoryID
+  JOIN AdventureWorks2022.Production.ProductCategory C
+    ON B.ProductCategoryID = C.ProductCategoryID
+```
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_11.JPG)
