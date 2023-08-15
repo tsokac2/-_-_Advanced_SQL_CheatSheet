@@ -258,6 +258,17 @@ FROM AdventureWorks2022.Production.Product A
 #
 ## ROW_NUMBER
 
+The ROW_NUMBER() is a window function that assigns a sequential integer to each row within the partition of a result set. The row number starts with 1 for the first row in each partition.
+
+The following shows the syntax of the ROW_NUMBER() function:
+
+```
+ROW_NUMBER() OVER (
+    [PARTITION BY partition_expression, ... ]
+    ORDER BY sort_expression [ASC | DESC], ...
+)
+```
+
 ### Exercise 1
 
 **Create a query with the following columns:**
@@ -373,3 +384,135 @@ FROM AdventureWorks2022.Production.Product A
     ON B.ProductCategoryID = C.ProductCategoryID
 ```
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_11.JPG)
+
+#
+## RANK and DENSE_RANK
+
+**What are the RANK and DENSE_RANK SQL Functions?**
+
+The RANK and DENSE_RANK functions allow you to calculate the rank, or the position in a list, of a value in a group of values. It returns a number value.
+
+**What’s the Difference between RANK and DENSE_RANK and ROW_NUMBER?**
+
+The RANK and DENSE_RANK functions are slightly different from each other as well as the ROW_NUMBER function:
+
+RANK numbers are skipped so there may be a gap in rankings, and may not be unique.
+DENSE_RANK numbers are not skipped so there will not be a gap in rankings, and may not be unique.
+ROW_NUMBER is generated once for each row so there are no duplicates or gaps.
+For example:
+
+RANK: a list of results could use the RANK function and show values of 1, 2, 2, 4, and 5. The number 3 is skipped because the rank of 2 is tied.
+DENSE_RANK: a list of results could use the DENSE_RANK function and show values of 1, 2, 2, 3, and 4. The number 3 is still used, even if rank of 2 is tied.
+ROW_NUMBER: a list of results could use the ROW_NUMBER function and show values of 1, 2, 3, 4, and 5. All of the numbers are unique.
+
+**Syntax**
+
+The syntax for the SQL RANK function is:
+
+```RANK () OVER ( [query_partition_clause] order_by_clause )```
+
+The syntax for the SQL DENSE_RANK function is similar:
+
+```DENSE_RANK () OVER ( [query_partition_clause] order_by_clause )```
+
+You can also use these functions as an aggregate function. You provide an input value, and the function returns the rank of where that value would be.
+
+Here’s the syntax for both functions:
+```
+RANK (search_value) WITHIN GROUP ( [query_partition_clause] order_by_clause );
+DENSE_RANK (search_value) WITHIN GROUP ( [query_partition_clause] order_by_clause );
+```
+
+#### Exercise 1
+
+Using your solution query to Exercise 4 from the ROW_NUMBER exercises as a staring point, add a derived column called “Category Price Rank With Rank” that uses the RANK function to rank all products by ListPrice – within each category - in descending order. 
+
+Observe the differences between the “Category Price Rank” and “Category Price Rank With Rank” fields.
+
+#### Solution Exercise 1
+```
+SELECT 
+  ProductName = A.Name,
+  A.ListPrice,
+  ProductSubcategory = B.Name,
+  ProductCategory = C.Name,
+  [Price Rank] = ROW_NUMBER() OVER(ORDER BY A.ListPrice DESC),
+  [Category Price Rank] = ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC),
+  [Category Price Rank With Rank] = RANK() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC),
+  [Top 5 Price In Category] = 
+	CASE 
+		WHEN ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC) <= 5 THEN 'Yes'
+		ELSE 'No'
+	END
+
+  FROM AdventureWorks2022.Production.Product A
+  JOIN AdventureWorks2022.Production.ProductSubcategory B
+  ON A.ProductSubcategoryID = B.ProductSubcategoryID
+  JOIN AdventureWorks2022.Production.ProductCategory C
+  ON B.ProductCategoryID = C.ProductCategoryID
+```
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_12.JPG)
+
+#### Exercise 2
+
+Modify your query from Exercise 2 by adding a derived column called "Category Price Rank With Dense Rank" that that uses the DENSE_RANK function to rank all products by ListPrice – within each category - in descending order.
+
+Observe the differences among the “Category Price Rank”, “Category Price Rank With Rank”, and “Category Price Rank With Dense Rank” fields.
+
+#### Solution Exercise 2
+```
+SELECT 
+  ProductName = A.Name,
+  A.ListPrice,
+  ProductSubcategory = B.Name,
+  ProductCategory = C.Name,
+  [Price Rank] = ROW_NUMBER() OVER(ORDER BY A.ListPrice DESC),
+  [Category Price Rank] = ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC),
+  [Category Price Rank With Rank] = RANK() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC),
+  [Category Price Rank With Dense Rank] = DENSE_RANK() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC),
+  [Top 5 Price In Category] = 
+	CASE 
+		WHEN ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC) <= 5 THEN 'Yes'
+		ELSE 'No'
+	END
+
+
+  FROM AdventureWorks2022.Production.Product A
+  JOIN AdventureWorks2022.Production.ProductSubcategory B
+  ON A.ProductSubcategoryID = B.ProductSubcategoryID
+  JOIN AdventureWorks2022.Production.ProductCategory C
+  ON B.ProductCategoryID = C.ProductCategoryID
+```
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_13.JPG)
+
+#### Exercise 3
+
+Examine the code you wrote to define the “Top 5 Price In Category” field back in the ROW_NUMBER exercises. 
+
+Now that you understand the differences among ROW_NUMBER, RANK, and DENSE_RANK, consider which of these functions would be most appropriate to return a true top 5 products by price, assuming we want to see the top 5 distinct prices AND we want “ties” (by price) to all share the same rank.
+
+#### Solution Exercise 3
+```
+SELECT 
+  ProductName = A.Name,
+  A.ListPrice,
+  ProductSubcategory = B.Name,
+  ProductCategory = C.Name,
+  [Price Rank] = ROW_NUMBER() OVER(ORDER BY A.ListPrice DESC),
+  [Category Price Rank] = ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC),
+  [Category Price Rank With Rank] = RANK() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC),
+  [Category Price Rank With Dense Rank] = DENSE_RANK() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC),
+  [Top 5 Price In Category] = 
+	CASE 
+		WHEN DENSE_RANK() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC) <= 5 THEN 'Yes'
+		ELSE 'No'
+	END
+
+
+  FROM AdventureWorks2022.Production.Product A
+  JOIN AdventureWorks2022.Production.ProductSubcategory B
+  ON A.ProductSubcategoryID = B.ProductSubcategoryID
+  JOIN AdventureWorks2022.Production.ProductCategory C
+  ON B.ProductCategoryID = C.ProductCategoryID
+```
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_14.JPG)
