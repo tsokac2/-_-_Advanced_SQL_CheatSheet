@@ -621,3 +621,35 @@ A.OrderDate
 ```
 #### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_17.JPG)
+
+#### Exercise 4
+
+Modify your query from Exercise 3 by adding a derived column called "Next2OrderByEmployeeVendor" that returns, within the group of all orders that have the same EmployeeID, the vendor name offset TWO orders into the “future” relative to the order in the current row. 
+
+The code should be very similar to Exercise 3, but with an extra argument passed to the Window Function used.
+
+
+#### Solution Exercise 4
+```
+SELECT 
+PurchaseOrderID
+,OrderDate
+,TotalDue
+,VendorName = B.Name
+,PrevOrderFromVendorAmt = LAG(A.TotalDue) OVER(PARTITION BY A.VendorIORDER BY A.OrderDate)
+,NextOrderByEmployeeVendor = LEAD(B.Name) OVER(PARTITION BY EmployeeID ORDER BY A.OrderDate)
+,Next2OrderByEmployeeVendor = LEAD(B.Name,2) OVER(PARTITION BY EmployeeID ORDER BY A.OrderDate)
+
+FROM AdventureWorks2022.Purchasing.PurchaseOrderHeader A
+JOIN AdventureWorks2022.Purchasing.Vendor B
+ON A.VendorID = B.BusinessEntityID
+
+WHERE YEAR(A.OrderDate) >= 2013
+AND A.TotalDue > 500
+
+ORDER BY 
+A.EmployeeID,
+A.OrderDa
+```
+#### Results:
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_18.JPG)
