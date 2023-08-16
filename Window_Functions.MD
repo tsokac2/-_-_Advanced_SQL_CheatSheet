@@ -545,10 +545,10 @@ Join Purchasing.Vendor to Purchasing.PurchaseOrderHeader on BusinessEntityID = V
 #### Solution Exercise 1
 ```
 SELECT 
-	   PurchaseOrderID
-      ,OrderDate
-      ,TotalDue
-	  ,VendorName = B.Name
+	PurchaseOrderID
+    ,OrderDate
+    ,TotalDue
+	,VendorName = B.Name
 
   FROM AdventureWorks2022.Purchasing.PurchaseOrderHeader A
   JOIN AdventureWorks2022.Purchasing.Vendor B
