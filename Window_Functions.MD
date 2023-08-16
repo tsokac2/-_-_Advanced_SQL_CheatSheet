@@ -545,16 +545,16 @@ Join Purchasing.Vendor to Purchasing.PurchaseOrderHeader on BusinessEntityID = V
 #### Solution Exercise 1
 ```
 SELECT 
-	PurchaseOrderID
-    ,OrderDate
-    ,TotalDue
-	,VendorName = B.Name
+PurchaseOrderID
+,OrderDate
+,TotalDue
+,VendorName = B.Name
 
-  FROM AdventureWorks2022.Purchasing.PurchaseOrderHeader A
-  JOIN AdventureWorks2022.Purchasing.Vendor B
-    ON A.VendorID = B.BusinessEntityID
+FROM AdventureWorks2022.Purchasing.PurchaseOrderHeader A
+JOIN AdventureWorks2022.Purchasing.Vendor B
+ON A.VendorID = B.BusinessEntityID
 
-  WHERE YEAR(A.OrderDate) >= 2013
-	AND A.TotalDue > 500
+WHERE YEAR(A.OrderDate) >= 2013
+AND A.TotalDue > 500
 ```
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_15.JPG)
