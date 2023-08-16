@@ -3,6 +3,9 @@
 ## Overview of the Section
 * **[Window Functions With OVER](#Window-Functions-With-OVER)**
 * **[PARTITION BY](#PARTITION-BY)**
+* **[ROW_NUMBER](#ROW_NUMBER)**
+* **[RANK and DENSE_RANK](#RANK-and-DENSE_RANK)**
+* **[LEAD and LAG](#LEAD-and-LAG)**
 
 ## OVER()
 Window functions allow you to include aggregate calculations in your queries, WITHOUT otherwise changing the output in any way.
