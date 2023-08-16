@@ -114,14 +114,14 @@ JOIN AdventureWorks2022.HumanResources.EmployeePayHistory R
 
 ```
 SELECT
- P.FirstName
-,P.LastName
-,T.JobTitle
-,R.Rate
-,[AverageRate] = AVG(R.Rate) OVER()
-,[MaximumRate] = MAX(R.Rate) OVER()
-,[DiffFromAvgRate] = R.Rate - AVG(R.Rate) OVER()
-,[PercentofMaxRate] = (R.Rate / MAX(R.Rate) OVER()) * 100
+	 P.FirstName
+	,P.LastName
+	,T.JobTitle
+	,R.Rate
+	,[AverageRate] = AVG(R.Rate) OVER()
+	,[MaximumRate] = MAX(R.Rate) OVER()
+	,[DiffFromAvgRate] = R.Rate - AVG(R.Rate) OVER()
+	,[PercentofMaxRate] = (R.Rate / MAX(R.Rate) OVER()) * 100
 
 FROM AdventureWorks2022.Person.Person P
 JOIN AdventureWorks2022.HumanResources.Employee T
