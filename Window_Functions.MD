@@ -516,3 +516,45 @@ SELECT
   ON B.ProductCategoryID = C.ProductCategoryID
 ```
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_14.JPG)
+
+#
+## LEAD and LAG
+
+**LEAD** and **LAG** let us grab values from subsequent or previous records relative to the position of the "current" record in our data.
+
+They can be useful any time we want to compare a value in a given column to the next or previous value in the same column but side by side, in the same row.
+
+This is a very common problem in real-world analytics scenarios.
+
+#### Exercise 1
+
+**Create a query with the following columns:**
+
+* “PurchaseOrderID” from the Purchasing.PurchaseOrderHeader table
+* “OrderDate” from the Purchasing.PurchaseOrderHeader table
+* “TotalDue” from the Purchasing.PurchaseOrderHeader table
+* “Name” from the Purchasing.Vendor table, which can be aliased as “VendorName”*
+
+Join Purchasing.Vendor to Purchasing.PurchaseOrderHeader on BusinessEntityID = VendorID
+
+**Apply the following criteria to the query:**
+
+* Order must have taken place on or after 2013
+* TotalDue must be greater than $500
+
+#### Solution Exercise 1
+```
+SELECT 
+	   PurchaseOrderID
+      ,OrderDate
+      ,TotalDue
+	  ,VendorName = B.Name
+
+  FROM AdventureWorks2022.Purchasing.PurchaseOrderHeader A
+  JOIN AdventureWorks2022.Purchasing.Vendor B
+    ON A.VendorID = B.BusinessEntityID
+
+  WHERE YEAR(A.OrderDate) >= 2013
+	AND A.TotalDue > 500
+```
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_15.JPG)
