@@ -558,3 +558,33 @@ WHERE YEAR(A.OrderDate) >= 2013
 AND A.TotalDue > 500
 ```
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_15.JPG)
+
+#### Exercise 2
+
+**Modify your query from Exercise 1 by adding a derived column called**
+
+"PrevOrderFromVendorAmt", that returns the “previous” TotalDue value (relative to the current row) within the group of all orders with the same vendor ID. We are defining “previous” based on order date.
+
+
+
+#### Solution Exercise 2
+```
+SELECT 
+PurchaseOrderID
+,OrderDate
+,TotalDue
+,VendorName = B.Name
+,PrevOrderFromVendorAmt = LAG(A.TotalDue) OVER(PARTITION BY A.VendorIORDER BY A.OrderDate)
+
+FROM AdventureWorks2022.Purchasing.PurchaseOrderHeader A
+JOIN AdventureWorks2022.Purchasing.Vendor B
+ON A.VendorID = B.BusinessEntityID
+
+WHERE YEAR(A.OrderDate) >= 2013
+AND A.TotalDue > 500
+
+ORDER BY 
+A.VendorID,
+A.OrderDate
+```
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_16.JPG)
