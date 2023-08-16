@@ -566,7 +566,6 @@ AND A.TotalDue > 500
 "PrevOrderFromVendorAmt", that returns the “previous” TotalDue value (relative to the current row) within the group of all orders with the same vendor ID. We are defining “previous” based on order date.
 
 
-
 #### Solution Exercise 2
 ```
 SELECT 
@@ -587,4 +586,38 @@ ORDER BY
 A.VendorID,
 A.OrderDate
 ```
+#### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_16.JPG)
+
+#### Exercise 3
+
+**Modify your query from Exercise 2 by adding a derived column called**
+
+"NextOrderByEmployeeVendor", that returns the “next” vendor name (the “name” field from Purchasing.Vendor) within the group of all orders that have the same EmployeeID value in Purchasing.PurchaseOrderHeader. 
+
+Similar to the last exercise, we are defining “next” based on order date.
+
+
+#### Solution Exercise 3
+```
+SELECT 
+PurchaseOrderID
+,OrderDate
+,TotalDue
+,VendorName = B.Name
+,PrevOrderFromVendorAmt = LAG(A.TotalDue) OVER(PARTITION BY A.VendorIORDER BY A.OrderDate)
+,NextOrderByEmployeeVendor = LEAD(B.Name) OVER(PARTITION BY EmployeeID ORDER BY A.OrderDate)
+
+FROM AdventureWorks2022.Purchasing.PurchaseOrderHeader A
+JOIN AdventureWorks2022.Purchasing.Vendor B
+ON A.VendorID = B.BusinessEntityID
+
+WHERE YEAR(A.OrderDate) >= 2013
+AND A.TotalDue > 500
+
+ORDER BY 
+A.EmployeeID,
+A.OrderDate
+```
+#### Results:
+![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_17.JPG)
