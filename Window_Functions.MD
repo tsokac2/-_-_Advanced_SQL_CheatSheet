@@ -114,14 +114,14 @@ JOIN AdventureWorks2022.HumanResources.EmployeePayHistory R
 
 ```
 SELECT
-	 P.FirstName
-	,P.LastName
-	,T.JobTitle
-	,R.Rate
-	,[AverageRate] = AVG(R.Rate) OVER()
-	,[MaximumRate] = MAX(R.Rate) OVER()
-	,[DiffFromAvgRate] = R.Rate - AVG(R.Rate) OVER()
-	,[PercentofMaxRate] = (R.Rate / MAX(R.Rate) OVER()) * 100
+ P.FirstName
+,P.LastName
+,T.JobTitle
+,R.Rate
+,[AverageRate] = AVG(R.Rate) OVER()
+,[MaximumRate] = MAX(R.Rate) OVER()
+,[DiffFromAvgRate] = R.Rate - AVG(R.Rate) OVER()
+,[PercentofMaxRate] = (R.Rate / MAX(R.Rate) OVER()) * 100
 
 FROM AdventureWorks2022.Person.Person P
 JOIN AdventureWorks2022.HumanResources.Employee T
@@ -164,17 +164,17 @@ Instead of groups being assigned based on the distinct values of ALL the non-agg
 #### Solution Exercise 1
 ```
 SELECT 
-  ProductName = A.Name,
-  A.ListPrice,
-  ProductSubcategory = B.Name,
-  ProductCategory = C.Name
+ProductName = A.Name,
+A.ListPrice,
+ProductSubcategory = B.Name,
+ProductCategory = C.Name
 
 
 FROM AdventureWorks2022.Production.Product A
-  JOIN AdventureWorks2022.Production.ProductSubcategory B
-    ON A.ProductSubcategoryID = B.ProductSubcategoryID
-  JOIN AdventureWorks2022.Production.ProductCategory C
-    ON B.ProductCategoryID = C.ProductCategoryID
+JOIN AdventureWorks2022.Production.ProductSubcategory B
+ON A.ProductSubcategoryID = B.ProductSubcategoryID
+JOIN AdventureWorks2022.Production.ProductCategory C
+ON B.ProductCategoryID = C.ProductCategoryID
 ```
 #### Results:
 
@@ -190,18 +190,19 @@ FROM AdventureWorks2022.Production.Product A
 #### Solution Exercise 2
 ```
 SELECT 
-  ProductName = A.Name,
-  A.ListPrice,
-  ProductSubcategory = B.Name,
-  ProductCategory = C.Name,
-  AvgPriceByCategory = AVG(A.ListPrice) OVER(PARTITION BY C.Name)
+ProductName = A.Name,
+A.ListPrice,
+ProductSubcategory = B.Name,
+ProductCategory = C.Name,
+AvgPriceByCategory = AVG(A.ListPrice) OVER(PARTITION BY C.Name)
 
 FROM AdventureWorks2022.Production.Product A
-  JOIN AdventureWorks2022.Production.ProductSubcategory B
-    ON A.ProductSubcategoryID = B.ProductSubcategoryID
-  JOIN AdventureWorks2022.Production.ProductCategory C
-    ON B.ProductCategoryID = C.ProductCategoryID
+JOIN AdventureWorks2022.Production.ProductSubcategory B
+ON A.ProductSubcategoryID = B.ProductSubcategoryID
+JOIN AdventureWorks2022.Production.ProductCategory C
+ON B.ProductCategoryID = C.ProductCategoryID
 ```
+#### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_06.JPG)
 
 #### Exercise 3
@@ -213,19 +214,20 @@ FROM AdventureWorks2022.Production.Product A
 #### Solution Exercise 3
 ```
 SELECT 
-  ProductName = A.Name,
-  A.ListPrice,
-  ProductSubcategory = B.Name,
-  ProductCategory = C.Name,
-  AvgPriceByCategory = AVG(A.ListPrice) OVER(PARTITION BY C.Name),
-  AvgPriceByCategoryAndSubcategory = AVG(A.ListPrice) OVER(PARTITION BY C.Name, B.Name)
+ProductName = A.Name,
+A.ListPrice,
+ProductSubcategory = B.Name,
+ProductCategory = C.Name,
+AvgPriceByCategory = AVG(A.ListPrice) OVER(PARTITION BY C.Name),
+AvgPriceByCategoryAndSubcategory = AVG(A.ListPrice) OVER(PARTITION BY CName, B.Name)
 
 FROM AdventureWorks2022.Production.Product A
-  JOIN AdventureWorks2022.Production.ProductSubcategory B
-    ON A.ProductSubcategoryID = B.ProductSubcategoryID
-  JOIN AdventureWorks2022.Production.ProductCategory C
-    ON B.ProductCategoryID = C.ProductCategoryID
+JOIN AdventureWorks2022.Production.ProductSubcategory B
+ON A.ProductSubcategoryID = B.ProductSubcategoryID
+JOIN AdventureWorks2022.Production.ProductCategory C
+ON B.ProductCategoryID = C.ProductCategoryID
 ```
+#### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_07.JPG)
 
 #### Exercise 4
@@ -239,20 +241,21 @@ FROM AdventureWorks2022.Production.Product A
 #### Solution Exercise 4
 ```
 SELECT 
-  ProductName = A.Name,
-  A.ListPrice,
-  ProductSubcategory = B.Name,
-  ProductCategory = C.Name,
-  AvgPriceByCategory = AVG(A.ListPrice) OVER(PARTITION BY C.Name),
-  AvgPriceByCategoryAndSubcategory = AVG(A.ListPrice) OVER(PARTITION BY C.Name, B.Name),
-  ProductVsCategoryDelta = A.ListPrice - AVG(A.ListPrice) OVER(PARTITION BY C.Name)
+ProductName = A.Name,
+A.ListPrice,
+ProductSubcategory = B.Name,
+ProductCategory = C.Name,
+AvgPriceByCategory = AVG(A.ListPrice) OVER(PARTITION BY C.Name),
+AvgPriceByCategoryAndSubcategory = AVG(A.ListPrice) OVER(PARTITION BY CName, B.Name),
+ProductVsCategoryDelta = A.ListPrice - AVG(A.ListPrice) OVER(PARTITION BY CName)
 
 FROM AdventureWorks2022.Production.Product A
-  JOIN AdventureWorks2022.Production.ProductSubcategory B
-    ON A.ProductSubcategoryID = B.ProductSubcategoryID
-  JOIN AdventureWorks2022.Production.ProductCategory C
-    ON B.ProductCategoryID = C.ProductCategoryID
+JOIN AdventureWorks2022.Production.ProductSubcategory B
+ON A.ProductSubcategoryID = B.ProductSubcategoryID
+JOIN AdventureWorks2022.Production.ProductCategory C
+ON B.ProductCategoryID = C.ProductCategoryID
 ```
+#### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_08.JPG)
 
 #
@@ -264,8 +267,8 @@ The following shows the syntax of the ROW_NUMBER() function:
 
 ```
 ROW_NUMBER() OVER (
-    [PARTITION BY partition_expression, ... ]
-    ORDER BY sort_expression [ASC | DESC], ...
+[PARTITION BY partition_expression, ... ]
+ORDER BY sort_expression [ASC | DESC], ...
 )
 ```
 
@@ -274,85 +277,76 @@ ROW_NUMBER() OVER (
 **Create a query with the following columns:**
 
 * “Name” from the **Production.Product** table, which can be alised as “ProductName”
-
 * “ListPrice” from the **Production.Product** table
-
 * “Name” from the **Production. ProductSubcategory** table, which can be alised as “ProductSubcategory”*
-
 * “Name” from the **Production.ProductCategory** table, which can be alised as “ProductCategory”**
-
 * Join **Production.ProductSubcategory** to **Production.Product** on “ProductSubcategoryID”
-
 * Join **Production.ProductCategory** to **ProductSubcategory** on “ProductCategoryID”
-
 * All the tables can be inner joined, and you do not need to apply any criteria.
 
 #### Solution Exercise 1
 ```
 SELECT 
-  ProductName = A.Name,
-  A.ListPrice,
-  ProductSubcategory = B.Name,
-  ProductCategory = C.Name
-
+ProductName = A.Name,
+A.ListPrice,
+ProductSubcategory = B.Name,
+ProductCategory = C.Name
 
 FROM AdventureWorks2022.Production.Product A
-  JOIN AdventureWorks2022.Production.ProductSubcategory B
-    ON A.ProductSubcategoryID = B.ProductSubcategoryID
-  JOIN AdventureWorks2022.Production.ProductCategory C
-    ON B.ProductCategoryID = C.ProductCategoryID
+JOIN AdventureWorks2022.Production.ProductSubcategory B
+ON A.ProductSubcategoryID = B.ProductSubcategoryID
+JOIN AdventureWorks2022.Production.ProductCategory C
+ON B.ProductCategoryID = C.ProductCategoryID
 ```
 #### Results:
-
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_05.JPG)
 
 #### Exercise 2
 
 * Enhance your query from Exercise 1 by adding a derived column called
-
 * "Price Rank " that ranks all records in the dataset by ListPrice, in descending order. That is to say, the product with the most expensive price should have a rank of 1, and the product with the least expensive price should have a rank equal to the number of records in the dataset.
 
 #### Solution Exercise 2
 ```
 SELECT 
-  ProductName = A.Name,
-  A.ListPrice,
-  ProductSubcategory = B.Name,
-  ProductCategory = C.Name,
-  [Price Rank] = ROW_NUMBER() OVER(ORDER BY A.ListPrice DESC)
+ProductName = A.Name,
+A.ListPrice,
+ProductSubcategory = B.Name,
+ProductCategory = C.Name,
+[Price Rank] = ROW_NUMBER() OVER(ORDER BY A.ListPrice DESC)
 
 
 FROM AdventureWorks2022.Production.Product A
-  JOIN AdventureWorks2022.Production.ProductSubcategory B
-    ON A.ProductSubcategoryID = B.ProductSubcategoryID
-  JOIN AdventureWorks2022.Production.ProductCategory C
-    ON B.ProductCategoryID = C.ProductCategoryI
+JOIN AdventureWorks2022.Production.ProductSubcategory B
+ON A.ProductSubcategoryID = B.ProductSubcategoryID
+JOIN AdventureWorks2022.Production.ProductCategory C
+ON B.ProductCategoryID = C.ProductCategoryI
 ```
+#### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_09.JPG)
 
 #### Exercise 3
 
 * Enhance your query from Exercise 2 by adding a derived column called
-
 * "Category Price Rank" that ranks all products by ListPrice – within each category - in descending order. In other words, every product within a given category should be ranked relative to other products in the same category.
 
 #### Solution Exercise 3
 ```
 SELECT 
-  ProductName = A.Name,
-  A.ListPrice,
-  ProductSubcategory = B.Name,
-  ProductCategory = C.Name,
-  [Price Rank] = ROW_NUMBER() OVER(ORDER BY A.ListPrice DESC),
-  [Category Price Rank] = ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC)
-
+ProductName = A.Name,
+A.ListPrice,
+ ProductSubcategory = B.Name,
+ProductCategory = C.Name,
+[Price Rank] = ROW_NUMBER() OVER(ORDER BY A.ListPrice DESC),
+[Category Price Rank] = ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY AListPrice DESC)
 
 FROM AdventureWorks2022.Production.Product A
-  JOIN AdventureWorks2022.Production.ProductSubcategory B
-    ON A.ProductSubcategoryID = B.ProductSubcategoryID
-  JOIN AdventureWorks2022.Production.ProductCategory C
-    ON B.ProductCategoryID = C.ProductCategoryID
+JOIN AdventureWorks2022.Production.ProductSubcategory B
+ON A.ProductSubcategoryID = B.ProductSubcategoryID
+JOIN AdventureWorks2022.Production.ProductCategory C
+ON B.ProductCategoryID = C.ProductCategoryID
 ```
+#### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_10.JPG)
 
 #### Exercise 4
@@ -364,25 +358,25 @@ FROM AdventureWorks2022.Production.Product A
 #### Solution Exercise 4
 ```
 SELECT 
-  ProductName = A.Name,
-  A.ListPrice,
-  ProductSubcategory = B.Name,
-  ProductCategory = C.Name,
-  [Price Rank] = ROW_NUMBER() OVER(ORDER BY A.ListPrice DESC),
-  [Category Price Rank] = ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC),
-  [Top 5 Price In Category] = 
-	CASE 
-		WHEN ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC) <= 5 THEN 'Yes'
-		ELSE 'No'
-	END
-
+ProductName = A.Name,
+A.ListPrice,
+ProductSubcategory = B.Name,
+ProductCategory = C.Name,
+[Price Rank] = ROW_NUMBER() OVER(ORDER BY A.ListPrice DESC),
+[Category Price Rank] = ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY AListPrice DESC),
+[Top 5 Price In Category] = 
+CASE 
+WHEN ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC<= 5 THEN 'Yes'
+ELSE 'No'
+END
 
 FROM AdventureWorks2022.Production.Product A
-  JOIN AdventureWorks2022.Production.ProductSubcategory B
-    ON A.ProductSubcategoryID = B.ProductSubcategoryID
-  JOIN AdventureWorks2022.Production.ProductCategory C
-    ON B.ProductCategoryID = C.ProductCategoryID
+JOIN AdventureWorks2022.Production.ProductSubcategory B
+ON A.ProductSubcategoryID = B.ProductSubcategoryID
+JOIN AdventureWorks2022.Production.ProductCategory C
+ON B.ProductCategoryID = C.ProductCategoryID
 ```
+#### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_11.JPG)
 
 #
@@ -432,25 +426,26 @@ Observe the differences between the “Category Price Rank” and “Category Pr
 #### Solution Exercise 1
 ```
 SELECT 
-  ProductName = A.Name,
-  A.ListPrice,
-  ProductSubcategory = B.Name,
-  ProductCategory = C.Name,
-  [Price Rank] = ROW_NUMBER() OVER(ORDER BY A.ListPrice DESC),
-  [Category Price Rank] = ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC),
-  [Category Price Rank With Rank] = RANK() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC),
-  [Top 5 Price In Category] = 
-	CASE 
-		WHEN ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC) <= 5 THEN 'Yes'
-		ELSE 'No'
-	END
+ProductName = A.Name,
+A.ListPrice,
+ProductSubcategory = B.Name,
+ProductCategory = C.Name,
+[Price Rank] = ROW_NUMBER() OVER(ORDER BY A.ListPrice DESC),
+[Category Price Rank] = ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY AListPrice DESC),
+[Category Price Rank With Rank] = RANK() OVER(PARTITION BY C.Name ORDER BYA.ListPrice DESC),
+[Top 5 Price In Category] = 
+CASE 
+WHEN ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC) <= 5 THEN 'Yes'
+ELSE 'No'
+END
 
-  FROM AdventureWorks2022.Production.Product A
-  JOIN AdventureWorks2022.Production.ProductSubcategory B
-  ON A.ProductSubcategoryID = B.ProductSubcategoryID
-  JOIN AdventureWorks2022.Production.ProductCategory C
-  ON B.ProductCategoryID = C.ProductCategoryID
+FROM AdventureWorks2022.Production.Product A
+JOIN AdventureWorks2022.Production.ProductSubcategory B
+ON A.ProductSubcategoryID = B.ProductSubcategoryID
+JOIN AdventureWorks2022.Production.ProductCategory C
+ON B.ProductCategoryID = C.ProductCategoryID
 ```
+#### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_12.JPG)
 
 #### Exercise 2
@@ -462,27 +457,27 @@ Observe the differences among the “Category Price Rank”, “Category Price R
 #### Solution Exercise 2
 ```
 SELECT 
-  ProductName = A.Name,
-  A.ListPrice,
-  ProductSubcategory = B.Name,
-  ProductCategory = C.Name,
-  [Price Rank] = ROW_NUMBER() OVER(ORDER BY A.ListPrice DESC),
-  [Category Price Rank] = ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC),
-  [Category Price Rank With Rank] = RANK() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC),
-  [Category Price Rank With Dense Rank] = DENSE_RANK() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC),
-  [Top 5 Price In Category] = 
-	CASE 
-		WHEN ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC) <= 5 THEN 'Yes'
-		ELSE 'No'
-	END
+ProductName = A.Name,
+A.ListPrice,
+ProductSubcategory = B.Name,
+ProductCategory = C.Name,
+[Price Rank] = ROW_NUMBER() OVER(ORDER BY A.ListPrice DESC),
+[Category Price Rank] = ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY AListPrice DESC),
+[Category Price Rank With Rank] = RANK() OVER(PARTITION BY C.Name ORDER BYA.ListPrice DESC),
+[Category Price Rank With Dense Rank] = DENSE_RANK() OVER(PARTITION BY CName ORDER BY A.ListPrice DESC),
+[Top 5 Price In Category] = 
+CASE 
+WHEN ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC<= 5 THEN 'Yes'
+ELSE 'No'
+END
 
-
-  FROM AdventureWorks2022.Production.Product A
-  JOIN AdventureWorks2022.Production.ProductSubcategory B
-  ON A.ProductSubcategoryID = B.ProductSubcategoryID
-  JOIN AdventureWorks2022.Production.ProductCategory C
-  ON B.ProductCategoryID = C.ProductCategoryID
+FROM AdventureWorks2022.Production.Product A
+JOIN AdventureWorks2022.Production.ProductSubcategory B
+ON A.ProductSubcategoryID = B.ProductSubcategoryID
+JOIN AdventureWorks2022.Production.ProductCategory C
+ON B.ProductCategoryID = C.ProductCategoryID
 ```
+#### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_13.JPG)
 
 #### Exercise 3
@@ -494,27 +489,27 @@ Now that you understand the differences among ROW_NUMBER, RANK, and DENSE_RANK, 
 #### Solution Exercise 3
 ```
 SELECT 
-  ProductName = A.Name,
-  A.ListPrice,
-  ProductSubcategory = B.Name,
-  ProductCategory = C.Name,
-  [Price Rank] = ROW_NUMBER() OVER(ORDER BY A.ListPrice DESC),
-  [Category Price Rank] = ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC),
-  [Category Price Rank With Rank] = RANK() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC),
-  [Category Price Rank With Dense Rank] = DENSE_RANK() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC),
-  [Top 5 Price In Category] = 
-	CASE 
-		WHEN DENSE_RANK() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC) <= 5 THEN 'Yes'
-		ELSE 'No'
-	END
+ProductName = A.Name,
+A.ListPrice,
+ProductSubcategory = B.Name,
+ProductCategory = C.Name,
+[Price Rank] = ROW_NUMBER() OVER(ORDER BY A.ListPrice DESC),
+[Category Price Rank] = ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY AListPrice DESC),
+[Category Price Rank With Rank] = RANK() OVER(PARTITION BY C.Name ORDER BYA.ListPrice DESC),
+[Category Price Rank With Dense Rank] = DENSE_RANK() OVER(PARTITION BY CName ORDER BY A.ListPrice DESC),
+[Top 5 Price In Category] = 
+CASE 
+WHEN DENSE_RANK() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC<= 5 THEN 'Yes'
+ELSE 'No'
+END
 
-
-  FROM AdventureWorks2022.Production.Product A
-  JOIN AdventureWorks2022.Production.ProductSubcategory B
-  ON A.ProductSubcategoryID = B.ProductSubcategoryID
-  JOIN AdventureWorks2022.Production.ProductCategory C
-  ON B.ProductCategoryID = C.ProductCategoryID
+FROM AdventureWorks2022.Production.Product A
+JOIN AdventureWorks2022.Production.ProductSubcategory B
+ON A.ProductSubcategoryID = B.ProductSubcategoryID
+JOIN AdventureWorks2022.Production.ProductCategory C
+ON B.ProductCategoryID = C.ProductCategoryID
 ```
+#### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_14.JPG)
 
 #
@@ -557,6 +552,7 @@ ON A.VendorID = B.BusinessEntityID
 WHERE YEAR(A.OrderDate) >= 2013
 AND A.TotalDue > 500
 ```
+#### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_15.JPG)
 
 #### Exercise 2
@@ -597,7 +593,6 @@ A.OrderDate
 
 Similar to the last exercise, we are defining “next” based on order date.
 
-
 #### Solution Exercise 3
 ```
 SELECT 
@@ -627,7 +622,6 @@ A.OrderDate
 Modify your query from Exercise 3 by adding a derived column called "Next2OrderByEmployeeVendor" that returns, within the group of all orders that have the same EmployeeID, the vendor name offset TWO orders into the “future” relative to the order in the current row. 
 
 The code should be very similar to Exercise 3, but with an extra argument passed to the Window Function used.
-
 
 #### Solution Exercise 4
 ```
