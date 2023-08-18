@@ -220,3 +220,28 @@ FROM AdventureWorks2022.HumanResources.Employee
 #### Results:
 
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_05.JPG)
+
+### Exercise 3
+
+Refine your output with a criterion in the WHERE clause that filters out any employees whose vacation hours are less then 80% of the maximum amount of vacation hours for any one employee. 
+
+In other words, return only employees who have at least 80% as much vacation time as the employee with the most vacation time.
+
+_Hint:_ The query should return 60 rows.
+
+```
+SELECT
+ BusinessEntityID
+,JobTitle
+,VacationHours
+,MaxVacationHours = (SELECT MAX(VacationHours) FROM AdventureWorks2022HumanResources.Employee)
+,PercentOfMaxVacationHours = (VacationHours * 1.0) / (SELECT M(VacationHours) FROM AdventureWorks2022.HumanResources.Employee)
+
+FROM AdventureWorks2022.HumanResources.Employee
+
+WHERE (VacationHours * 1.0) / (SELECT MAX(VacationHours) FROM AdventureWorks2022.HumanResources.Employee) >= 0.8
+```
+#### Results:
+
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_06.JPG)
+
