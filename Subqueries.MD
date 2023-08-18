@@ -4,10 +4,7 @@
 * **[Introducing Subqueries](#Introducing-Subqueries)**
 * **[SCALAR Subqueries](#SCALAR-Subqueries)**
 * **[CORRELATED Subqueries](#CORRELATED-Subqueries)**
-* **[EXISTS Subqueries](#EXISTS-Subqueries)**
-
-
-
+* **[EXISTS and NOT EXISTS Subqueries](#EXISTS-and-NOT-EXISTS-Subqueries)**
 
 ## Introducing Subqueries
 
@@ -363,4 +360,42 @@ FROM AdventureWorks2022.Purchasing.PurchaseOrderHeader A
 **[Back To The Top](#Overview-of-the-Section)**
 
 #
-## EXISTS Subqueries
+## EXISTS and NOT EXISTS Subqueries
+
+We use JOINs to add fields from different tables to our SELECT queries.
+
+We sometimes also apply **criteria** to those fields inour WHERE clause.
+
+But what if we ONLY need to bring in a field to use it in our WHERE, and don't need to see it in our query output?
+
+That's where EXISTS comes in.
+
+But if we can accomplis the same thing with a JOIN, why do we even need EXISTS?
+
+For one-to-one relationships, there really isn't much of an advantage to using EXISTS.
+
+However, EXISTS offers some powerful advantages when dealing with one-to-many relationships.
+
+**Query example:**
+```
+SELECT
+     A.SalesOrderID
+    ,A.OrderDate
+    ,A.TotalDue
+
+FROM AdventureWorks2022.Sales.SalesOrderHeader A
+
+WHERE EXISTS (
+	SELECT
+	1
+	FROM AdventureWorks2022.Sales.SalesOrderDetail B
+	WHERE A.SalesOrderID = B.SalesOrderID
+		AND B.LineTotal > 10000
+)
+
+ORDER BY 1
+```
+**Results:**
+
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_10.JPG)
+
