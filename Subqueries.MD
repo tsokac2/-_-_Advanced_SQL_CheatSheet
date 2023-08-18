@@ -376,7 +376,7 @@ For one-to-one relationships, there really isn't much of an advantage to using E
 
 However, EXISTS offers some powerful advantages when dealing with one-to-many relationships.
 
-**Query example:**
+**Query example: EXISTS**
 ```
 SELECT
      A.SalesOrderID
@@ -398,4 +398,27 @@ ORDER BY 1
 **Results:**
 
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_10.JPG)
+
+**Query example: NOT EXISTS**
+```
+SELECT
+     A.SalesOrderID
+    ,A.OrderDate
+    ,A.TotalDue
+
+FROM AdventureWorks2022.Sales.SalesOrderHeader A
+
+WHERE NOT EXISTS (
+	SELECT
+	1
+	FROM AdventureWorks2022.Sales.SalesOrderDetail B
+	WHERE A.SalesOrderID = B.SalesOrderID
+		AND B.LineTotal > 10000
+)
+
+ORDER BY 1
+```
+**Results:**
+
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_11.JPG)
 
