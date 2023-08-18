@@ -168,4 +168,4 @@ ORDER BY ListPrice ASC
 ```
 **Results:**
 
-![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03.JPG)
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03_E_02.JPG)
