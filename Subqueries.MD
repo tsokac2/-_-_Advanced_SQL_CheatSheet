@@ -5,6 +5,7 @@
 * **[SCALAR Subqueries](#SCALAR-Subqueries)**
 * **[CORRELATED Subqueries](#CORRELATED-Subqueries)**
 * **[EXISTS and NOT EXISTS Subqueries](#EXISTS-and-NOT-EXISTS-Subqueries)**
+* **[FOR XML PATH With STUFF Subqueries](#FOR-XML-PATH-With-STUFF-Subqueries)**
 
 ## Introducing Subqueries
 
@@ -376,6 +377,12 @@ For one-to-one relationships, there really isn't much of an advantage to using E
 
 However, EXISTS offers some powerful advantages when dealing with one-to-many relationships.
 
+### Use EXISTS if...
+
+- You want to apply criteria to fields from a secondary table but don't need to include those fields in your output.
+- You want to apply criteria to fields from a secondary table while ensuring that multiple matches in the secondary table won't duplicate data from the primary tale in your output.
+- You need to check a secondary table to make sure a match of some types does NOT exist.
+
 **Query example: EXISTS**
 ```
 SELECT
@@ -422,3 +429,100 @@ ORDER BY 1
 
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_11.JPG)
 
+### Exercise 1
+
+Select all records from the Purchasing.PurchaseOrderHeader table such that there is at least one item in the order with an order quantity greater than 500. 
+
+The individual items tied to an order can be found in the Purchasing.PurchaseOrderDetail table.
+
+**Select the following columns:**
+
+- PurchaseOrderID
+- OrderDate
+- SubTotal
+- TaxAmt
+
+Sort by purchase order ID.
+
+```
+SELECT
+       A.PurchaseOrderID
+      ,A.OrderDate
+      ,A.SubTotal
+	  ,A.TaxAmt
+
+FROM AdventureWorks2022.Purchasing.PurchaseOrderHeader A
+
+WHERE EXISTS (
+	SELECT
+	1
+	FROM AdventureWorks2022.Purchasing.PurchaseOrderDetail B
+	WHERE A.PurchaseOrderID = B.PurchaseOrderID
+		AND B.OrderQty > 500
+)
+
+ORDER BY 1
+```
+#### Results:
+
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_12.JPG)
+
+### Exercise 2
+
+Modify your query from Exercise 1 as follows:
+
+Select all records from the Purchasing.PurchaseOrderHeader table such that there is at least one item in the order with an order quantity greater than 500, AND a unit price greater than $50.00.
+
+Select ALL columns from the Purchasing.PurchaseOrderHeader table for display in your output.
+
+Even if you have aliased this table to enable the use of a JOIN or EXISTS, you can still use the SELECT * shortcut to do this. Assuming you have aliased your table "A", simply use "SELECT A.*" to select all columns from that table.
+
+```
+SELECT
+       A.*
+FROM AdventureWorks2022.Purchasing.PurchaseOrderHeader A
+
+WHERE EXISTS (
+	SELECT
+	1
+	FROM AdventureWorks2022.Purchasing.PurchaseOrderDetail B
+	WHERE A.PurchaseOrderID = B.PurchaseOrderID
+		AND B.OrderQty > 500
+		AND B.UnitPrice > 50
+)
+
+ORDER BY 1
+```
+#### Results:
+
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_13.JPG)
+
+### Exercise 3
+Select all records from the Purchasing.PurchaseOrderHeader table such that NONE of the items within the order have a rejected quantity greater than 0.
+
+Select ALL columns from the Purchasing.PurchaseOrderHeader table using the "SELECT *" shortcut.
+
+```
+SELECT
+       A.*
+
+FROM AdventureWorks2022.Purchasing.PurchaseOrderHeader A
+
+WHERE NOT EXISTS (
+	SELECT
+	1
+	FROM AdventureWorks2022.Purchasing.PurchaseOrderDetail B
+	WHERE A.PurchaseOrderID = B.PurchaseOrderID
+		AND B.RejectedQty > 0
+)
+
+ORDER BY 1
+```
+#### Results:
+
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_14.JPG)
+
+**[Back To The Top](#Overview-of-the-Section)**
+
+#
+## FOR XML PATH With STUFF
