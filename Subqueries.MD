@@ -2,6 +2,7 @@
 
 ## Overview of the Section
 * **[Introducing Subqueries](#Introducing-Subqueries)**
+* **[SCALAR Subqueries](#SCALAR-Subqueries)**
 
 
 ## Introducing Subqueries
@@ -167,5 +168,4 @@ WHERE ListPrice > (SELECT AVG(ListPrice) FROM AdventureWorks2022.Production.Prod
 ORDER BY ListPrice ASC
 ```
 **Results:**
-
-![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03_E_02.JPG)
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_03.JPG)
