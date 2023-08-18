@@ -687,3 +687,60 @@ SELECT
 
 
 
+### Exercise 1
+
+Using PIVOT, write a query against the HumanResources.Employee table
+
+That summarizes the average amount of vacation time for Sales Representatives, Buyers, and Janitors.
+
+```
+SELECT
+*
+FROM
+(
+SELECT 
+JobTitle,
+VacationHours
+
+FROM AdventureWorks2022.HumanResources.Employee
+) A
+
+PIVOT(
+AVG(VacationHours)
+FOR JobTitle IN([Sales Representative],[Buyer],[Janitor])
+) B
+```
+
+#### Results:
+
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_24.JPG)
+
+### Exercise 2
+
+Modify your query from Exercise 1 such that the results are broken out by Gender. Alias the Gender field as "Employee Gender" in your output.
+
+```
+SELECT
+[Employee Gender] = Gender,
+[Sales Representative],
+Buyer,
+Janitor
+FROM
+(
+SELECT 
+JobTitle,
+Gender,
+VacationHours
+
+FROM AdventureWorks2022.HumanResources.Employee
+) A
+
+PIVOT(
+AVG(VacationHours)
+FOR JobTitle IN([Sales Representative],[Buyer],[Janitor])
+) B
+```
+#### Results:
+
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_25.JPG)
+
