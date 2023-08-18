@@ -3,6 +3,7 @@
 ## Overview of the Section
 * **[Introducing Subqueries](#Introducing-Subqueries)**
 * **[SCALAR Subqueries](#SCALAR-Subqueries)**
+* **[CORRELATED Subqueries](#CORRELATED-Subqueries)**
 
 
 ## Introducing Subqueries
@@ -245,3 +246,5 @@ WHERE (VacationHours * 1.0) / (SELECT MAX(VacationHours) FROM AdventureWorks2022
 
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_06.JPG)
 
+#
+## CORRELATED Subqueries
