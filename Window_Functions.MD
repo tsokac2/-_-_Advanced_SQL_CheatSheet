@@ -135,6 +135,9 @@ JOIN AdventureWorks2022.HumanResources.EmployeePayHistory R
 #### Results:
 
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_04.JPG)
+
+**[Back To The Top](#Overview-of-the-Section)**
+
 #
 ## PARTITION BY
 
@@ -261,6 +264,8 @@ ON B.ProductCategoryID = C.ProductCategoryID
 #### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_08.JPG)
 
+**[Back To The Top](#Overview-of-the-Section)**
+
 #
 ## ROW_NUMBER
 
@@ -381,6 +386,8 @@ ON B.ProductCategoryID = C.ProductCategoryID
 ```
 #### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_11.JPG)
+
+**[Back To The Top](#Overview-of-the-Section)**
 
 #
 ## RANK and DENSE_RANK
@@ -515,6 +522,8 @@ ON B.ProductCategoryID = C.ProductCategoryID
 #### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_14.JPG)
 
+**[Back To The Top](#Overview-of-the-Section)**
+
 #
 ## LEAD and LAG
 
@@ -563,7 +572,6 @@ AND A.TotalDue > 500
 **Modify your query from Exercise 1 by adding a derived column called**
 
 "PrevOrderFromVendorAmt", that returns the “previous” TotalDue value (relative to the current row) within the group of all orders with the same vendor ID. We are defining “previous” based on order date.
-
 
 #### Solution Exercise 2
 ```
@@ -650,3 +658,5 @@ A.OrderDa
 ```
 #### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_18.JPG)
+
+**[Back To The Top](#Overview-of-the-Section)**
