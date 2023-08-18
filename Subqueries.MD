@@ -253,3 +253,33 @@ WHERE (VacationHours * 1.0) / (SELECT MAX(VacationHours) FROM AdventureWorks2022
 
 #
 ## CORRELATED Subqueries
+
+Correlated subqueries are subqueries that run once for each record in the main/outer query.
+
+They then return a scalar output(i.e, a single value) for each of those records.
+
+Correlated subqueries can be used in either the SELECT or WHERE clauses.
+
+**Query example:**
+```
+SELECT 
+ SalesOrderID
+,OrderDate
+,SubTotal
+,TaxAmt
+,Freight
+,TotalDue
+,MultiOrderCount = --correlated subquery
+    (
+        SELECT
+        COUNT(*)
+        FROM AdventureWorks2022.Sales.SalesOrderDetail B
+        WHERE A.SalesOrderID = B.SalesOrderID
+        AND B.OrderQty > 1
+    )
+
+FROM AdventureWorks2022.Sales.SalesOrderHeader A
+```
+**Results:**
+
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_07.JPG)
