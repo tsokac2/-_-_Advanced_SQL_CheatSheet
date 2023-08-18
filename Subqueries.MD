@@ -141,3 +141,31 @@ WHERE PurchaseOrderRank <= 3
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_02.JPG)
 #
 ## SCALAR Subqueries
+
+Subqueries that return a single value.
+
+A scalar subquery expression is a subquery that returns exactly one column value from one row. 
+
+The value of the scalar subquery expression is the value of the select list item of the subquery. 
+
+If the subquery returns 0 rows, then the value of the scalar subquery expression is NULL
+
+**Query example:**
+```
+SELECT 
+ ProductID
+,[Name]
+,StandardCost
+,ListPrice
+,AvgListPrice = (SELECT AVG(ListPrice) FROM AdventureWorks202Production.Product) -- Subquerie
+,AvgListPriceDiff = ListPrice - (SELECT AVG(ListPrice) FROAdventureWorks2022.Production.Product) -- Subquerie
+
+FROM AdventureWorks2022.Production.Product
+
+WHERE ListPrice > (SELECT AVG(ListPrice) FROM AdventureWorks2022.Production.Product)
+
+ORDER BY ListPrice ASC
+```
+**Results:**
+
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03.JPG)
