@@ -5,7 +5,8 @@
 * **[SCALAR Subqueries](#SCALAR-Subqueries)**
 * **[CORRELATED Subqueries](#CORRELATED-Subqueries)**
 * **[EXISTS and NOT EXISTS Subqueries](#EXISTS-and-NOT-EXISTS-Subqueries)**
-* **[FOR XML PATH With STUFF](#FOR-XML-PATH-With-STUFF)**
+* **[FOR XML PATH With STUFF()](#FOR-XML-PATH-With-STUFF())**
+* **[PIVOT - Part 1](#PIVOT---Part-1)**
 
 ## Introducing Subqueries
 
@@ -525,7 +526,7 @@ ORDER BY 1
 **[Back To The Top](#Overview-of-the-Section)**
 
 #
-## FOR XML PATH With STUFF
+## FOR XML PATH With STUFF()
 
 We get the requirement to display the data from the relational SQL table in various formats. 
 
@@ -614,3 +615,9 @@ SELECT
 FROM AdventureWorks2022.Sales.SalesOrderHeader A
 ```
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_21.JPG)
+
+**[Back To The Top](#Overview-of-the-Section)**
+
+#
+## PIVOT - Part 1
+
