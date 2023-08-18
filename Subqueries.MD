@@ -526,3 +526,33 @@ ORDER BY 1
 
 #
 ## FOR XML PATH With STUFF
+
+We get the requirement to display the data from the relational SQL table in various formats. 
+
+Sometimes developers want to retrieve data in the XML format from the SQL tables holding relational data in regular data types. SQL Server supports XML data using the FOR XML clause. 
+
+We can easily convert existing data into the XML format using this. We have the following modes available in the FOR XML clause. We can use the FOR XML clause to join or concatenate multiple columns into a single row output as well.
+
+**CAST()** function converts a value (of any type) into a specified datatype.
+
+**The STUFF()** function deletes a part of a string and then inserts another part into the string, starting at a specified position.
+
+**Step 1**
+
+```
+SELECT
+	COUNT(*)
+	FROM AdventureWorks2022.Sales.SalesOrderDetail A
+	WHERE A.SalesOrderID = 43659
+```
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_15.JPG)
+
+**Step 2**
+
+```
+SELECT
+	*
+	FROM AdventureWorks2022.Sales.SalesOrderDetail A
+	WHERE A.SalesOrderID = 43659
+```
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_16.JPG)
