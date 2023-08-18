@@ -168,4 +168,5 @@ WHERE ListPrice > (SELECT AVG(ListPrice) FROM AdventureWorks2022.Production.Prod
 ORDER BY ListPrice ASC
 ```
 **Results:**
+
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_03.JPG)
