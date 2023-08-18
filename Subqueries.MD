@@ -192,3 +192,31 @@ FROM AdventureWorks2022.HumanResources.Employee
 #### Results:
 
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_04.JPG)
+
+### Exercise 2
+
+Add a new derived field to your query from Exercise 1, which returns the percent an individual employees' vacation hours are, of the maximum vacation hours for any employee. 
+
+For example, the record for the employee with the most vacation hours should have a value of 1.00, or 100%, in this column.
+
+_Hints:_
+
+- You can repurpose your logic from the "MaxVacationHours" for the denominator.
+- Make sure you multiply at least one side of your equation by 1.0, to ensure the output will be a decimal.
+
+```
+SELECT
+ BusinessEntityID
+,JobTitle
+,VacationHours
+,MaxVacationHours = (SELECT MAX(VacationHours) FROM AdventureWorks202HumanResources.Employee)
+,PercentOfMaxVacationHours = (VacationHours * 1.0) / (SELECT M(VacationHours)
+
+FROM AdventureWorks2022.HumanResources.Employee)
+
+FROM AdventureWorks2022.HumanResources.Employee
+
+```
+#### Results:
+
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_05.JPG)
