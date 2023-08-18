@@ -5,7 +5,7 @@
 * **[SCALAR Subqueries](#SCALAR-Subqueries)**
 * **[CORRELATED Subqueries](#CORRELATED-Subqueries)**
 * **[EXISTS and NOT EXISTS Subqueries](#EXISTS-and-NOT-EXISTS-Subqueries)**
-* **[FOR XML PATH With STUFF()](#FOR-XML-PATH-With-STUFF())**
+* **[FOR XML PATH With STUFF Function](#FOR-XML-PATH-With-STUFF-Function)**
 * **[PIVOT - Part 1](#PIVOT---Part-1)**
 
 ## Introducing Subqueries
@@ -526,7 +526,7 @@ ORDER BY 1
 **[Back To The Top](#Overview-of-the-Section)**
 
 #
-## FOR XML PATH With STUFF()
+## FOR XML PATH With STUFF Function
 
 We get the requirement to display the data from the relational SQL table in various formats. 
 
@@ -659,10 +659,10 @@ Modify the query from Exercise 1 such that only products with a ListPrice value 
 
 ```
 SELECT 
-       SubcategoryName = A.[Name]
-	  ,Products =
-		STUFF(
-			(
+    SubcategoryName = A.[Name]
+	,Products =
+	STUFF(
+		    (
 				SELECT
 					';' + B.Name
 
