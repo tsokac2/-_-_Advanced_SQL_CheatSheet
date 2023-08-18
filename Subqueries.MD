@@ -538,7 +538,6 @@ We can easily convert existing data into the XML format using this. We have the 
 **The STUFF()** function deletes a part of a string and then inserts another part into the string, starting at a specified position.
 
 **Step 1**
-
 ```
 SELECT
 	COUNT(*)
@@ -548,7 +547,6 @@ SELECT
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_15.JPG)
 
 **Step 2**
-
 ```
 SELECT
 	*
@@ -556,3 +554,63 @@ SELECT
 	WHERE A.SalesOrderID = 43659
 ```
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_16.JPG)
+
+**Step 3**
+```
+SELECT
+	LineTotal
+	FROM AdventureWorks2022.Sales.SalesOrderDetail A
+	WHERE A.SalesOrderID = 43659
+```
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_17.JPG)
+
+**Step 4**
+```
+ SELECT
+	LineTotal
+	FROM AdventureWorks2022.Sales.SalesOrderDetail A
+	WHERE A.SalesOrderID = 43659
+	FOR XML PATH('')
+```
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_18.JPG)
+
+**Step 5**
+```
+SELECT
+  STUFF(
+		  (
+			  SELECT
+			  ',' + CAST(CAST(LineTotal AS MONEY) AS VARCHAR)
+			  FROM AdventureWorks2022.Sales.SalesOrderDetail A
+			  WHERE A.SalesOrderID = 43659
+			  FOR XML PATH('')
+		  ),
+		  1,1,'I''m stuffed! '
+        )
+```
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_20.JPG)
+
+**Step 6**
+```
+SELECT 
+     SalesOrderID
+    ,OrderDate
+    ,SubTotal
+    ,TaxAmt
+    ,Freight
+    ,TotalDue
+	,LineTotals = 
+	STUFF(
+			(
+				SELECT
+				',' + CAST(CAST(LineTotal AS MONEY) AS VARCHAR)
+				FROM AdventureWorks2022.Sales.SalesOrderDetail B
+				WHERE A.SalesOrderID = B.SalesOrderID 
+				FOR XML PATH('')
+			  ),
+			1,1,''
+		  )
+
+FROM AdventureWorks2022.Sales.SalesOrderHeader A
+```
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_21.JPG)
