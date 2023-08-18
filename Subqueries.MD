@@ -4,6 +4,9 @@
 * **[Introducing Subqueries](#Introducing-Subqueries)**
 * **[SCALAR Subqueries](#SCALAR-Subqueries)**
 * **[CORRELATED Subqueries](#CORRELATED-Subqueries)**
+* **[EXISTS Subqueries](#EXISTS-Subqueries)**
+
+
 
 
 ## Introducing Subqueries
@@ -283,3 +286,81 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader A
 **Results:**
 
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_07.JPG)
+
+### Exercise 1
+
+Write a query that outputs all records from the Purchasing.PurchaseOrderHeader table. Include the following columns from the table:
+
+- PurchaseOrderID
+- VendorID
+- OrderDate
+- TotalDue
+
+Add a derived column called **NonRejectedItems** which returns, for each purchase order ID in the query output, the number of line items from the Purchasing.
+
+PurchaseOrderDetail table which did not have any rejections (i.e., RejectedQty = 0). Use a correlated subquery to do this.
+
+```
+SELECT 
+ PurchaseOrderID
+,VendorID
+,OrderDate
+,TotalDue
+,NonRejectedItems = 
+	(
+		SELECT
+		COUNT(*)
+		FROM Purchasing.PurchaseOrderDetail B
+		WHERE A.PurchaseOrderID = B.PurchaseOrderID
+		AND B.RejectedQty = 0
+	)
+
+FROM AdventureWorks2022.Purchasing.PurchaseOrderHeader A
+```
+#### Results:
+
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_08.JPG)
+
+### Exercise 2
+
+Modify your query to include a second derived field called **MostExpensiveItem.**
+
+This field should return, for each purchase order ID, the UnitPrice of the most expensive item for that order in the Purchasing.PurchaseOrderDetail table.
+
+Use a correlated subquery to do this as well.
+
+_Hint:_ Think of the most appropriate aggregate function to use in the correlated subquery for this scenar
+
+```
+SELECT 
+ PurchaseOrderID
+,VendorID
+,OrderDate
+,TotalDue
+,NonRejectedItems = 
+	(
+		SELECT
+		COUNT(*)
+		FROM Purchasing.PurchaseOrderDetail B
+		WHERE A.PurchaseOrderID = B.PurchaseOrderID
+		AND B.RejectedQty = 0
+	)
+	,MostExpensiveItem = 
+	(
+		SELECT
+		MAX(B.UnitPrice)
+		FROM Purchasing.PurchaseOrderDetail B
+		WHERE A.PurchaseOrderID = B.PurchaseOrderID
+	)
+
+FROM AdventureWorks2022.Purchasing.PurchaseOrderHeader A
+
+```
+#### Results:
+
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_09.JPG)
+
+**[Back To The Top](#Overview-of-the-Section)**
+
+#
+## EXISTS Subqueries
