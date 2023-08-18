@@ -170,3 +170,25 @@ ORDER BY ListPrice ASC
 **Results:**
 
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_03.JPG)
+
+### Exercise 1
+
+Create a query that displays all rows and the following columns from the AdventureWorks2022.HumanResources.Employee table:
+
+- BusinessEntityID
+- JobTitle
+- VacationHours
+
+Also include a derived column called "MaxVacationHours" that returns the maximum amount of vacation hours for any one employee, in any given row.
+```
+SELECT
+ BusinessEntityID
+,JobTitle
+,VacationHours
+,MaxVacationHours = (SELECT MAX(VacationHours) FROM AdventureWorks202HumanResources.Employee)
+
+FROM AdventureWorks2022.HumanResources.Employee
+```
+#### Results:
+
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_04.JPG)
