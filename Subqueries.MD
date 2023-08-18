@@ -7,6 +7,7 @@
 * **[EXISTS and NOT EXISTS Subqueries](#EXISTS-and-NOT-EXISTS-Subqueries)**
 * **[FOR XML PATH With STUFF Function](#FOR-XML-PATH-With-STUFF-Function)**
 * **[PIVOT - Part 1](#PIVOT---Part-1)**
+* **[PIVOT - Part 2](#PIVOT---Part-2)**
 
 ## Introducing Subqueries
 
@@ -685,6 +686,10 @@ SELECT
 ## PIVOT - Part 1
 
 
+#
+## PIVOT - Part 2
+
+
 
 
 ### Exercise 1
@@ -744,3 +749,4 @@ FOR JobTitle IN([Sales Representative],[Buyer],[Janitor])
 
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_25.JPG)
 
+**[Back To The Top](#Overview-of-the-Section)**
