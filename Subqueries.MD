@@ -5,7 +5,7 @@
 * **[SCALAR Subqueries](#SCALAR-Subqueries)**
 * **[CORRELATED Subqueries](#CORRELATED-Subqueries)**
 * **[EXISTS and NOT EXISTS Subqueries](#EXISTS-and-NOT-EXISTS-Subqueries)**
-* **[FOR XML PATH With STUFF Subqueries](#FOR-XML-PATH-With-STUFF-Subqueries)**
+* **[FOR XML PATH With STUFF](#FOR-XML-PATH-With-STUFF)**
 
 ## Introducing Subqueries
 
