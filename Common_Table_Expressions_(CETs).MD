@@ -299,3 +299,36 @@ FROM Odds
 ```
 #### Results:
 ![Section_03](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03_E_33.JPG)
+
+### Recursive CTEs - Exercise 2
+
+Use a recursive CTE to generate a date series of all FIRST days of the month (1/1/2021, 2/1/2021, etc.) 
+
+From 1/1/2020 to 12/1/2029.
+
+_Hints:_
+- Use the DATEADD function strategically in your recursive member.
+- You may also have to modify MAXRECURSION.
+
+```
+WITH Dates AS
+(
+SELECT
+ CAST('01-01-2020' AS DATE) AS MyDate
+
+UNION ALL
+
+SELECT
+DATEADD(MONTH, 1, MyDate)
+FROM Dates
+WHERE MyDate < CAST('12-01-2029' AS DATE)
+)
+
+SELECT
+MyDate
+
+FROM Dates
+OPTION (MAXRECURSION 120)
+```
+#### Results:
+![Section_03](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03_E_34.JPG)
