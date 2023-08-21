@@ -202,7 +202,6 @@ WHERE OrderRank > 10
 GROUP BY OrderMonth
 )
 
-
 SELECT
 A.OrderMonth,
 A.TotalSales,
@@ -218,5 +217,58 @@ ORDER BY 1
 ![Section_03](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03_E_30.JPG)
 
 **[Back To The Top](#Overview-of-the-Section)**
+
 #
 ## Recursive CTEs
+
+**Query example:** Example 1: Generate number series with recursive CTE
+```
+WITH NumberSeries AS
+(
+SELECT
+ 1 AS MyNumber
+
+UNION  ALL
+
+SELECT 
+MyNumber + 1
+FROM NumberSeries
+WHERE MyNumber < 100
+)
+
+SELECT
+MyNumber
+FROM NumberSeries
+```
+#### Results:
+![Section_03](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03_E_31.JPG)
+
+**Query example:** Example 2: Generate number series with recursive CTE
+```
+WITH Dates AS
+(
+SELECT
+ CAST('01-01-2021' AS DATE) AS MyDate
+
+UNION ALL
+
+SELECT
+DATEADD(DAY, 1, MyDate)
+FROM Dates
+WHERE MyDate < CAST('12-31-2021' AS DATE)
+)
+
+SELECT
+MyDate
+
+FROM Dates
+OPTION (MAXRECURSION 365)
+```
+#### Results:
+![Section_03](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03_E_32.JPG)
+
+**[Back To The Top](#Overview-of-the-Section)**
+
+### Recursive CTEs - Exercise 1
+
+Use a recursive CTE to generate a list of all odd numbers between 1 and 100.
