@@ -221,6 +221,11 @@ ORDER BY 1
 #
 ### Recursive CTEs
 
+A recursive Common Table Expression (CTE) is a CTE that references itself. 
+By doing so, the CTE repeatedly executes, returns subsets of data, until it returns the complete result set.
+
+A recursive CTE is useful in querying hierarchical data such as organization charts where one employee reports to a manager or multi-level bill of materials when a product consists of many components, and each component itself also consists of many other components.
+
 **Query example:** Example 1: Generate number series with recursive CTE
 ```
 WITH NumberSeries AS
@@ -242,6 +247,8 @@ FROM NumberSeries
 ```
 #### Results:
 ![Section_03](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03_E_31.JPG)
+
+The DATEADD() function adds a time/date interval to a date and then returns the date.
 
 **Query example:** Example 2: Generate number series with recursive CTE
 ```
@@ -272,3 +279,23 @@ OPTION (MAXRECURSION 365)
 ### Recursive CTEs - Exercise 1
 
 Use a recursive CTE to generate a list of all odd numbers between 1 and 100.
+```
+WITH Odds AS
+(
+SELECT
+ 1 AS MyOddNumber
+
+UNION  ALL
+
+SELECT 
+MyOddNumber + 2
+FROM Odds
+WHERE MyOddNumber < 99
+)
+
+SELECT
+MyOddNumber
+FROM Odds
+```
+#### Results:
+![Section_03](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03_E_33.JPG)
