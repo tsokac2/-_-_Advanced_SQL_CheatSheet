@@ -70,6 +70,43 @@ ORDER BY 1
 ![Section_03](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03_E_28.JPG)
 
 
+## Refactored using CTE approach to "The Problem":
+```
+WITH Sales AS
+(
+SELECT 
+       OrderDate
+	  ,OrderMonth = DATEFROMPARTS(YEAR(OrderDate),MONTH(OrderDate),1)
+      ,TotalDue
+	  ,OrderRank = ROW_NUMBER() OVER(PARTITION BY DATEFROMPARTS(YEAR(OrderDate),MONTH(OrderDate),1) ORDER BY TotalDue DESC)
+FROM AdventureWorks2022.Sales.SalesOrderHeader
+)
+
+,Top10Sales AS
+(
+SELECT
+OrderMonth,
+Top10Total = SUM(TotalDue)
+FROM Sales
+WHERE OrderRank <= 10
+GROUP BY OrderMonth
+)
+
+
+SELECT
+A.OrderMonth,
+A.Top10Total,
+PrevTop10Total = B.Top10Total
+
+FROM Top10Sales A
+	LEFT JOIN Top10Sales B
+		ON A.OrderMonth = DATEADD(MONTH,1,B.OrderMonth)
+
+ORDER BY 1
+```
+#### Results:
+![Section_03](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03_E_29.JPG)
+
 
 
 **[Back To The Top](#Overview-of-the-Section)**
