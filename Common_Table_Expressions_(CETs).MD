@@ -1,7 +1,7 @@
 <h1 align="center">Common_Table_Expressions_(CETs)</h1>
 
 ## Overview of the Section
-* **[Introducing Subqueries](#Introducing-Subqueries)**
+* **[Introducing Common Table Expression (CTE)](#Introducing-Common-Table-Expression-(CTE))**
 
 
 ## Introducing Common Table Expression (CTE)
