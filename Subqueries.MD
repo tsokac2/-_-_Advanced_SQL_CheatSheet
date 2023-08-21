@@ -727,6 +727,8 @@ ORDER BY 1
 
 Create an alisa for "OrderQty" and order by most orders Quantity for [Bikes] and [Clothing].
 
+**ORDER BY 1** it simply means sorting the view or table by 1st column of query's result. This will sort your results by the first column returned.
+
 **Query example:**
 ```
 SELECT
