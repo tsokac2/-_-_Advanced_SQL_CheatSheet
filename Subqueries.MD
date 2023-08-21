@@ -685,8 +685,41 @@ SELECT
 #
 ## PIVOT - Part 1
 
+PIVOT rotates a table-valued expression by turning the unique values from one column in the expression into multiple columns in the output. 
 
+And PIVOT runs aggregations where they're required on any remaining column values that are wanted in the final output.
 
+**Query example:**
+```
+SELECT
+[Accessories],
+[Bikes],
+[Clothing],
+[Components]
+
+FROM
+(
+SELECT
+	   ProductCategoryName = D.Name,
+	   A.LineTotal
+
+FROM AdventureWorks2022.Sales.SalesOrderDetail A
+	JOIN AdventureWorks2022.Production.Product B
+		ON A.ProductID = B.ProductID
+	JOIN AdventureWorks2022.Production.ProductSubcategory C
+		ON B.ProductSubcategoryID = C.ProductSubcategoryID
+	JOIN AdventureWorks2022.Production.ProductCategory D
+		ON C.ProductCategoryID = D.ProductCategoryID
+) E
+
+PIVOT(
+SUM(LineTotal)
+FOR ProductCategoryName IN([Accessories],[Bikes],[Clothing],[Components])
+) F
+
+ORDER BY 1
+```
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_26.JPG)
 
 #
 ## PIVOT - Part 2
@@ -749,6 +782,6 @@ FOR JobTitle IN([Sales Representative],[Buyer],[Janitor])
 ```
 #### Results:
 
-![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_25.JPG)![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_25.JPG)
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_25.JPG)
 
 **[Back To The Top](#Overview-of-the-Section)**
