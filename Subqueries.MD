@@ -686,6 +686,8 @@ SELECT
 ## PIVOT - Part 1
 
 
+
+
 #
 ## PIVOT - Part 2
 
@@ -747,6 +749,6 @@ FOR JobTitle IN([Sales Representative],[Buyer],[Janitor])
 ```
 #### Results:
 
-![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_25.JPG)
+![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_25.JPG)![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_25.JPG)
 
 **[Back To The Top](#Overview-of-the-Section)**
