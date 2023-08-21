@@ -22,7 +22,7 @@ Each SQL CTE is like a named query, whose result is stored in a virtual table (a
 - Aggregate these into a sum total, by month.
 - Compare each month's total to the previous months's, on the same row. 
 
-## Subquery approach to "The Problem":
+### Subquery approach to "The Problem":
 
 ```
 SELECT
@@ -70,7 +70,7 @@ ORDER BY 1
 ![Section_03](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03_E_28.JPG)
 
 
-## Refactored using CTE approach to "The Problem":
+### Refactored using CTE approach to "The Problem":
 ```
 WITH Sales AS
 (
@@ -92,7 +92,6 @@ WHERE OrderRank <= 10
 GROUP BY OrderMonth
 )
 
-
 SELECT
 A.OrderMonth,
 A.Top10Total,
@@ -107,9 +106,7 @@ ORDER BY 1
 #### Results:
 ![Section_03](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03_E_29.JPG)
 
-
 **[Back To The Top](#Overview-of-the-Section)**
-
 
 #
 ## Recursive CTEs
