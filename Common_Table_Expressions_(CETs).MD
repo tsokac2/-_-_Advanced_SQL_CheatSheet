@@ -4,6 +4,7 @@
 * **[Introducing Common Table Expression CTE](#Introducing-Common-Table-Expression-CTE)**
 * **[Recursive CTEs](#Recursive-CTEs)**
 
+
 ## Introducing Common Table Expression CTE
 
 The Common Table Expression (CTE) is a powerful construct in SQL that helps simplify a query. 
@@ -217,9 +218,8 @@ ORDER BY 1
 ![Section_03](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03_E_30.JPG)
 
 **[Back To The Top](#Overview-of-the-Section)**
-
 #
-## Recursive CTEs
+### Recursive CTEs
 
 **Query example:** Example 1: Generate number series with recursive CTE
 ```
