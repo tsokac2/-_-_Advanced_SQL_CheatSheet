@@ -5,7 +5,7 @@
     * **[Subquery approach](#Subquery-approach)**
     * **[Refactored CTE approach](#Refactored-CTE-approach)**
     * **[CTEs Exercise](#CTEs-Exercise)**
-* **[Recursive CTEs](#Recursive CTEs)**
+* **[Recursive CTEs](#Recursive-CTEs)**
     * **[Recursive CTEs - Exercise 1](#Recursive-CTEs---Exercise-1)**  
 
 
