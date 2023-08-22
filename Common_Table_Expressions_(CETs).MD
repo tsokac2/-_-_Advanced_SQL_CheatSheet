@@ -6,8 +6,8 @@
     * **[Refactored CTE approach](#Refactored-CTE-approach)**
     * **[CTEs Exercise](#CTEs-Exercise)**
 * **[Recursive CTEs](#Recursive-CTEs)**
-    * **[Recursive CTEs - Exercise 1](#Recursive-CTEs---Exercise-1)**  
-
+    * **[Recursive CTEs - Exercise 1](#Recursive-CTEs---Exercise-1)**
+    * **[Recursive CTEs - Exercise 2](#Recursive-CTEs---Exercise-2)**   
 
 ## Introducing Common Table Expression CTE
 
