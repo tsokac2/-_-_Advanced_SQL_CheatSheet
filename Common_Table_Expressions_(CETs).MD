@@ -2,7 +2,7 @@
 
 ## Overview of the Section
 * **[Introducing Common Table Expression CTE](#Introducing-Common-Table-Expression-CTE)**
-    * [Subquery approach](#Subquery-approach-to-"The-Problem") 
+    * **[Subquery approach to "The Problem"](#Subquery-approach-to-"The-Problem")** 
 * **[Recursive CTEs](#Recursive-CTEs)**
     * [Sub](#Sub)
 
