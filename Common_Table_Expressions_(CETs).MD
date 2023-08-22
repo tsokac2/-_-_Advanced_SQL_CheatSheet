@@ -3,7 +3,10 @@
 ## Overview of the Section
 * **[Introducing Common Table Expression CTE](#Introducing-Common-Table-Expression-CTE)**
     * **[Subquery approach](#Subquery-approach)**
-    * **[Refactored CTE approach](#Refactored-CTE-approach)**  
+    * **[Refactored CTE approach](#Refactored-CTE-approach)**
+    * **[CTEs Exercise](#CTEs-Exercise)**
+* **[Recursive CTEs](#Recursive CTEs)**
+    * **[Recursive CTEs - Exercise 1](#Recursive-CTEs---Exercise-1)**  
 
 
 ## Introducing Common Table Expression CTE
@@ -71,6 +74,8 @@ ORDER BY 1
 
 ![Section_03](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03_E_28.JPG)
 
+**[Back To The Top](#Overview-of-the-Section)**
+
 ### Refactored CTE approach
 ```
 WITH Sales AS
@@ -109,7 +114,7 @@ ORDER BY 1
 
 **[Back To The Top](#Overview-of-the-Section)**
 
-### CTEs - Exercise
+### CTEs Exercise
 
 For this exercise, assume the CEO of our fictional company decided that the top 10 orders per month are actually outliers that need to be clipped out of our data before doing meaningful analysis.
 
