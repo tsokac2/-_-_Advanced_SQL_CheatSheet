@@ -20,7 +20,8 @@
     * **[FOR XML Exercise 2](#FOR-XML-Exercise-2)**
 * **[PIVOT - Part 1](#PIVOT---Part-1)**
 * **[PIVOT - Part 2](#PIVOT---Part-2)**
-
+    * **[PIVOT Exercise 1](#PIVOT-Exercise-1)**
+    * **[PIVOT Exercise 2](#PIVOT-Exercise-2)**
 
 ## Introducing Subqueries
 
@@ -757,6 +758,8 @@ ORDER BY 1
 #### Results:
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_26.JPG)
 
+**[Back To The Top](#Overview-of-the-Section)**
+
 #
 ## PIVOT - Part 2
 
@@ -794,12 +797,12 @@ FOR ProductCategoryName IN([Bikes],[Clothing])
 
 ORDER BY 1
 ```
-
 #### Results:
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_27.JPG)
 
+**[Back To The Top](#Overview-of-the-Section)**
 
-### Exercise 1
+### PIVOT Exercise 1
 
 Using PIVOT, write a query against the HumanResources.Employee table
 
@@ -827,7 +830,9 @@ FOR JobTitle IN([Sales Representative],[Buyer],[Janitor])
 
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_24.JPG)
 
-### Exercise 2
+**[Back To The Top](#Overview-of-the-Section)**
+
+### PIVOT Exercise 2
 
 Modify your query from Exercise 1 such that the results are broken out by Gender. Alias the Gender field as "Employee Gender" in your output.
 
