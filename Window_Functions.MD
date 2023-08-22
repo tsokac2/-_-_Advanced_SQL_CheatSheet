@@ -21,10 +21,10 @@
 	* **[RANK DENSE_RANK Exercise 2](#RANK-DENSE_RANK-Exercise-2)**
 	* **[RANK DENSE_RANK Exercise 3](#RANK-DENSE_RANK-Exercise-3)**
 * **[LEAD and LAG](#LEAD-and-LAG)**
-
-
-### 
-
+	* **[LEAD LAG Exercise 1](#LEAD-LAG-Exercise-1)**
+	* **[LEAD LAG Exercise 2](#LEAD-LAG-Exercise-2)**
+	* **[LEAD LAG Exercise 3](#LEAD-LAG-Exercise-3)**
+	* **[LEAD LAG Exercise 4](#LEAD-LAG-Exercise-4)**
 
 ### OVER()
 Window functions allow you to include aggregate calculations in your queries, WITHOUT otherwise changing the output in any way.
@@ -558,7 +558,7 @@ They can be useful any time we want to compare a value in a given column to the 
 
 This is a very common problem in real-world analytics scenarios.
 
-#### Exercise 1
+### LEAD LAG Exercise 1
 
 **Create a query with the following columns:**
 
@@ -592,7 +592,9 @@ AND A.TotalDue > 500
 #### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_15.JPG)
 
-#### Exercise 2
+**[Back To The Top](#Overview-of-the-Section)**
+
+### LEAD LAG Exercise 2
 
 **Modify your query from Exercise 1 by adding a derived column called**
 
@@ -621,7 +623,9 @@ A.OrderDate
 #### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_16.JPG)
 
-#### Exercise 3
+**[Back To The Top](#Overview-of-the-Section)**
+
+### LEAD LAG Exercise 3
 
 **Modify your query from Exercise 2 by adding a derived column called**
 
@@ -629,7 +633,6 @@ A.OrderDate
 
 Similar to the last exercise, we are defining “next” based on order date.
 
-#### Solution Exercise 3
 ```
 SELECT 
 PurchaseOrderID
@@ -653,13 +656,14 @@ A.OrderDate
 #### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_17.JPG)
 
-#### Exercise 4
+**[Back To The Top](#Overview-of-the-Section)**
+
+### LEAD LAG Exercise 4
 
 Modify your query from Exercise 3 by adding a derived column called "Next2OrderByEmployeeVendor" that returns, within the group of all orders that have the same EmployeeID, the vendor name offset TWO orders into the “future” relative to the order in the current row. 
 
 The code should be very similar to Exercise 3, but with an extra argument passed to the Window Function used.
 
-#### Solution Exercise 4
 ```
 SELECT 
 PurchaseOrderID
