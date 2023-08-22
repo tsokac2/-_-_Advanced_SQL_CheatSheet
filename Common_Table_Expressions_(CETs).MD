@@ -2,7 +2,13 @@
 
 ## Overview of the Section
 * **[Introducing Common Table Expression CTE](#Introducing-Common-Table-Expression-CTE)**
+    * [Subquery approach](#Subquery-approach-to-"The-Problem") 
 * **[Recursive CTEs](#Recursive-CTEs)**
+    * [Sub](#Sub)
+
+
+       ### Subquery approach to "The Problem":
+    ### Refactored using CTE approach to "The Problem":
 
 
 ## Introducing Common Table Expression CTE
@@ -23,7 +29,7 @@ Each SQL CTE is like a named query, whose result is stored in a virtual table (a
 - Aggregate these into a sum total, by month.
 - Compare each month's total to the previous months's, on the same row. 
 
-### Subquery approach to "The Problem":
+### Subquery approach to "The Problem"
 
 ```
 SELECT
@@ -69,7 +75,6 @@ ORDER BY 1
 #### Results:
 
 ![Section_03](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03_E_28.JPG)
-
 
 ### Refactored using CTE approach to "The Problem":
 ```
