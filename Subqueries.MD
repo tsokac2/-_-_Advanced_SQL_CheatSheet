@@ -12,11 +12,14 @@
     * **[CORRELATED Exercise 1](#CORRELATED-Exercise-1)**
     * **[CORRELATED Exercise 2](#CORRELATED-Exercise-2)**
 * **[EXISTS and NOT EXISTS Subqueries](#EXISTS-and-NOT-EXISTS-Subqueries)**
+    * **[EXISTS Exercise 1](#EXISTS-Exercise-1)**
+    * **[EXISTS Exercise 2](#EXISTS-Exercise-2)**
+    * **[EXISTS Exercise 3](#EXISTS-Exercise-3)**
 * **[FOR XML PATH With STUFF Function](#FOR-XML-PATH-With-STUFF-Function)**
+    * **[FOR XML Exercise 1](#FOR-XML-Exercise-1)**
+    * **[FOR XML Exercise 2](#FOR-XML-Exercise-2)**
 * **[PIVOT - Part 1](#PIVOT---Part-1)**
 * **[PIVOT - Part 2](#PIVOT---Part-2)**
-
-
 
 
 ## Introducing Subqueries
@@ -429,6 +432,8 @@ ORDER BY 1
 
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_10.JPG)
 
+**[Back To The Top](#Overview-of-the-Section)**
+
 **Query example: NOT EXISTS**
 ```
 SELECT
@@ -452,7 +457,9 @@ ORDER BY 1
 
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_11.JPG)
 
-### Exercise 1
+**[Back To The Top](#Overview-of-the-Section)**
+
+### EXISTS Exercise 1
 
 Select all records from the Purchasing.PurchaseOrderHeader table such that there is at least one item in the order with an order quantity greater than 500. 
 
@@ -490,7 +497,9 @@ ORDER BY 1
 
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_12.JPG)
 
-### Exercise 2
+**[Back To The Top](#Overview-of-the-Section)**
+
+### EXISTS Exercise 2
 
 Modify your query from Exercise 1 as follows:
 
@@ -520,7 +529,9 @@ ORDER BY 1
 
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_13.JPG)
 
-### Exercise 3
+**[Back To The Top](#Overview-of-the-Section)**
+
+### EXISTS Exercise 3
 Select all records from the Purchasing.PurchaseOrderHeader table such that NONE of the items within the order have a rejected quantity greater than 0.
 
 Select ALL columns from the Purchasing.PurchaseOrderHeader table using the "SELECT *" shortcut.
@@ -638,8 +649,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader A
 ```
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_21.JPG)
 
+**[Back To The Top](#Overview-of-the-Section)**
 
-### Exercise 1
+### FOR XML Exercise 1
 
 Create a query that displays all rows from the Production.ProductSubcategory table, and includes the following fields:
 
@@ -671,7 +683,9 @@ SELECT
 
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_22.JPG)
 
-### Exercise 2
+**[Back To The Top](#Overview-of-the-Section)**
+
+### FOR XML Exercise 2
 
 Modify the query from Exercise 1 such that only products with a ListPrice value greater than $50 are listed in the "Products" field.
 
