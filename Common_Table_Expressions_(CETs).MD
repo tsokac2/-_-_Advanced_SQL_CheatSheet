@@ -9,7 +9,7 @@
     * **[Recursive CTEs - Exercise 1](#Recursive-CTEs---Exercise-1)**
     * **[Recursive CTEs - Exercise 2](#Recursive-CTEs---Exercise-2)**   
 
-## Introducing Common Table Expression CTE
+### Introducing Common Table Expression CTE
 
 The Common Table Expression (CTE) is a powerful construct in SQL that helps simplify a query. 
 
@@ -28,7 +28,6 @@ Each SQL CTE is like a named query, whose result is stored in a virtual table (a
 - Compare each month's total to the previous months's, on the same row. 
 
 ### Subquery approach
-
 ```
 SELECT
 A.OrderMonth,
