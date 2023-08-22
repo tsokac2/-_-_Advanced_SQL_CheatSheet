@@ -23,7 +23,7 @@
     * **[PIVOT Exercise 1](#PIVOT-Exercise-1)**
     * **[PIVOT Exercise 2](#PIVOT-Exercise-2)**
 
-## Introducing Subqueries
+### Introducing Subqueries
 
 A subquery is a SQL query nested inside a larger query.
 
@@ -163,7 +163,7 @@ WHERE PurchaseOrderRank <= 3
 **[Back To The Top](#Overview-of-the-Section)**
 
 #
-## SCALAR Subqueries
+### SCALAR Subqueries
 
 Subqueries that return a single value.
 
@@ -276,7 +276,7 @@ WHERE (VacationHours * 1.0) / (SELECT MAX(VacationHours) FROM AdventureWorks2022
 **[Back To The Top](#Overview-of-the-Section)**
 
 #
-## CORRELATED Subqueries
+### CORRELATED Subqueries
 
 Correlated subqueries are subqueries that run once for each record in the main/outer query.
 
@@ -388,7 +388,7 @@ FROM AdventureWorks2022.Purchasing.PurchaseOrderHeader A
 **[Back To The Top](#Overview-of-the-Section)**
 
 #
-## EXISTS and NOT EXISTS Subqueries
+### EXISTS and NOT EXISTS Subqueries
 
 We use JOINs to add fields from different tables to our SELECT queries.
 
@@ -560,7 +560,7 @@ ORDER BY 1
 **[Back To The Top](#Overview-of-the-Section)**
 
 #
-## FOR XML PATH With STUFF Function
+### FOR XML PATH With STUFF Function
 
 We get the requirement to display the data from the relational SQL table in various formats. 
 
@@ -719,7 +719,7 @@ SELECT
 **[Back To The Top](#Overview-of-the-Section)**
 
 #
-## PIVOT - Part 1
+### PIVOT - Part 1
 
 PIVOT rotates a table-valued expression by turning the unique values from one column in the expression into multiple columns in the output. 
 
