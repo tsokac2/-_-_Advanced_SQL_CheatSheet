@@ -11,12 +11,19 @@
 	* **[PARTITION Exercise 2](#PARTITION-Exercise-2)**
 	* **[PARTITION Exercise 3](#PARTITION-Exercise-3)**
 	* **[PARTITION Exercise 4](#PARTITION-Exercise-4)**
-
-
 * **[ROW_NUMBER](#ROW_NUMBER)**
+	* **[ROW_NUMBER-Exercise 1](#ROW_NUMBER-Exercise-1)**
+	* **[ROW_NUMBER-Exercise 2](#ROW_NUMBER-Exercise-2)**
+	* **[ROW_NUMBER-Exercise 3](#ROW_NUMBER-Exercise-3)**
+	* **[ROW_NUMBER-Exercise 4](#ROW_NUMBER-Exercise-4)**
 * **[RANK and DENSE_RANK](#RANK-and-DENSE_RANK)**
+	* **[RANK DENSE_RANK Exercise 1](#RANK-DENSE_RANK-Exercise-1)**
+	* **[RANK DENSE_RANK Exercise 2](#RANK-DENSE_RANK-Exercise-2)**
+	* **[RANK DENSE_RANK Exercise 3](#RANK-DENSE_RANK-Exercise-3)**
 * **[LEAD and LAG](#LEAD-and-LAG)**
 
+
+### 
 
 
 ### OVER()
@@ -201,7 +208,7 @@ ON B.ProductCategoryID = C.ProductCategoryID
 
 **[Back To The Top](#Overview-of-the-Section)**
 
-#### PARTITION Exercise 2
+### PARTITION Exercise 2
 
 * Enhance your query from Exercise 1 by adding a derived column called
 
@@ -226,7 +233,7 @@ ON B.ProductCategoryID = C.ProductCategoryID
 
 **[Back To The Top](#Overview-of-the-Section)**
 
-#### PARTITION Exercise 3
+### PARTITION Exercise 3
 
 * Enhance your query from Exercise 2 by adding a derived column called
 
@@ -252,7 +259,7 @@ ON B.ProductCategoryID = C.ProductCategoryID
 
 **[Back To The Top](#Overview-of-the-Section)**
 
-#### PARTITION Exercise 4
+### PARTITION Exercise 4
 
 * Enhance your query from Exercise 3 by adding a derived column called
 
@@ -295,7 +302,7 @@ ORDER BY sort_expression [ASC | DESC], ...
 )
 ```
 
-### Exercise 1
+### ROW_NUMBER Exercise 1
 
 **Create a query with the following columns:**
 
@@ -307,7 +314,6 @@ ORDER BY sort_expression [ASC | DESC], ...
 * Join **Production.ProductCategory** to **ProductSubcategory** on “ProductCategoryID”
 * All the tables can be inner joined, and you do not need to apply any criteria.
 
-#### Solution Exercise 1
 ```
 SELECT 
 ProductName = A.Name,
@@ -324,12 +330,13 @@ ON B.ProductCategoryID = C.ProductCategoryID
 #### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_05.JPG)
 
-#### Exercise 2
+**[Back To The Top](#Overview-of-the-Section)**
+
+### ROW_NUMBER Exercise 2
 
 * Enhance your query from Exercise 1 by adding a derived column called
 * "Price Rank " that ranks all records in the dataset by ListPrice, in descending order. That is to say, the product with the most expensive price should have a rank of 1, and the product with the least expensive price should have a rank equal to the number of records in the dataset.
 
-#### Solution Exercise 2
 ```
 SELECT 
 ProductName = A.Name,
@@ -348,12 +355,13 @@ ON B.ProductCategoryID = C.ProductCategoryI
 #### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_09.JPG)
 
-#### Exercise 3
+**[Back To The Top](#Overview-of-the-Section)**
+
+### ROW_NUMBER Exercise 3
 
 * Enhance your query from Exercise 2 by adding a derived column called
 * "Category Price Rank" that ranks all products by ListPrice – within each category - in descending order. In other words, every product within a given category should be ranked relative to other products in the same category.
 
-#### Solution Exercise 3
 ```
 SELECT 
 ProductName = A.Name,
@@ -372,13 +380,14 @@ ON B.ProductCategoryID = C.ProductCategoryID
 #### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_10.JPG)
 
-#### Exercise 4
+**[Back To The Top](#Overview-of-the-Section)**
+
+### ROW_NUMBER Exercise 4
 
 * Enhance your query from Exercise 3 by adding a derived column called
 
 * "Top 5 Price In Category" that returns the string “Yes” if a product has one of the top 5 list prices in its product category, and “No” if it does not. You can try incorporating your logic from Exercise 3 into a CASE statement to make this work.
 
-#### Solution Exercise 4
 ```
 SELECT 
 ProductName = A.Name,
@@ -389,7 +398,7 @@ ProductCategory = C.Name,
 [Category Price Rank] = ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY AListPrice DESC),
 [Top 5 Price In Category] = 
 CASE 
-WHEN ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC<= 5 THEN 'Yes'
+WHEN ROW_NUMBER() OVER(PARTITION BY C.Name ORDER BY A.ListPrice DESC <= 5) THEN 'Yes'
 ELSE 'No'
 END
 
@@ -405,7 +414,7 @@ ON B.ProductCategoryID = C.ProductCategoryID
 **[Back To The Top](#Overview-of-the-Section)**
 
 #
-## RANK and DENSE_RANK
+### RANK and DENSE_RANK
 
 **What are the RANK and DENSE_RANK SQL Functions?**
 
@@ -442,13 +451,12 @@ RANK (search_value) WITHIN GROUP ( [query_partition_clause] order_by_clause );
 DENSE_RANK (search_value) WITHIN GROUP ( [query_partition_clause] order_by_clause );
 ```
 
-#### Exercise 1
+### RANK DENSE_RANK Exercise 1
 
 Using your solution query to Exercise 4 from the ROW_NUMBER exercises as a staring point, add a derived column called “Category Price Rank With Rank” that uses the RANK function to rank all products by ListPrice – within each category - in descending order. 
 
 Observe the differences between the “Category Price Rank” and “Category Price Rank With Rank” fields.
 
-#### Solution Exercise 1
 ```
 SELECT 
 ProductName = A.Name,
@@ -473,13 +481,14 @@ ON B.ProductCategoryID = C.ProductCategoryID
 #### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_12.JPG)
 
-#### Exercise 2
+**[Back To The Top](#Overview-of-the-Section)**
+
+### RANK DENSE_RANK Exercise 2
 
 Modify your query from Exercise 2 by adding a derived column called "Category Price Rank With Dense Rank" that that uses the DENSE_RANK function to rank all products by ListPrice – within each category - in descending order.
 
 Observe the differences among the “Category Price Rank”, “Category Price Rank With Rank”, and “Category Price Rank With Dense Rank” fields.
 
-#### Solution Exercise 2
 ```
 SELECT 
 ProductName = A.Name,
@@ -505,13 +514,14 @@ ON B.ProductCategoryID = C.ProductCategoryID
 #### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_13.JPG)
 
-#### Exercise 3
+**[Back To The Top](#Overview-of-the-Section)**
+
+### RANK DENSE_RANK Exercise 3
 
 Examine the code you wrote to define the “Top 5 Price In Category” field back in the ROW_NUMBER exercises. 
 
 Now that you understand the differences among ROW_NUMBER, RANK, and DENSE_RANK, consider which of these functions would be most appropriate to return a true top 5 products by price, assuming we want to see the top 5 distinct prices AND we want “ties” (by price) to all share the same rank.
 
-#### Solution Exercise 3
 ```
 SELECT 
 ProductName = A.Name,
@@ -540,7 +550,7 @@ ON B.ProductCategoryID = C.ProductCategoryID
 **[Back To The Top](#Overview-of-the-Section)**
 
 #
-## LEAD and LAG
+### LEAD and LAG
 
 **LEAD** and **LAG** let us grab values from subsequent or previous records relative to the position of the "current" record in our data.
 
