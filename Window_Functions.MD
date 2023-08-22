@@ -2,12 +2,24 @@
 
 ## Overview of the Section
 * **[Window Functions With OVER](#Window-Functions-With-OVER)**
+	* **[OVER Exercise 1](#OVER-Exercise-1)**
+	* **[OVER Exercise 2](#OVER-Exercise-2)**
+	* **[OVER Exercise 3](#OVER-Exercise-3)**
+	* **[OVER Exercise 4](#OVER-Exercise-4)**
 * **[PARTITION BY](#PARTITION-BY)**
+	* **[PARTITION Exercise 1](#PARTITION-Exercise-1)**
+	* **[PARTITION Exercise 2](#PARTITION-Exercise-2)**
+	* **[PARTITION Exercise 3](#PARTITION-Exercise-3)**
+	* **[PARTITION Exercise 4](#PARTITION-Exercise-4)**
+
+
 * **[ROW_NUMBER](#ROW_NUMBER)**
 * **[RANK and DENSE_RANK](#RANK-and-DENSE_RANK)**
 * **[LEAD and LAG](#LEAD-and-LAG)**
 
-## OVER()
+
+
+### OVER()
 Window functions allow you to include aggregate calculations in your queries, WITHOUT otherwise changing the output in any way.
 
 The aggregate calculations are simply tacked on to the query as an additional column.
@@ -31,9 +43,9 @@ FROM AdventureWorks2022.Sales.SalesPerson
 
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01.JPG)
 
-## OVER() - Exercises
+**[Back To The Top](#Overview-of-the-Section)**
 
-### Exercise 1
+### OVER Exercise 1
 
 **Create a query with the following columns:**
 
@@ -44,7 +56,6 @@ FROM AdventureWorks2022.Sales.SalesPerson
 * All the above tables can be joined on **BusinessEntityID**
 * All the tables can be ***inner joined***, and you do not need to apply any criteria.
 
-#### Solution Exercise 1
 ```
 SELECT 
  P.FirstName
@@ -63,7 +74,9 @@ FROM AdventureWorks2022.Person.Person P
 
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_01.JPG)
 
-### Exercise 2
+**[Back To The Top](#Overview-of-the-Section)**
+
+### OVER Exercise 2
 * Enhance your query from Exercise 1 by adding a derived column called
 * "MaximumRate" that returns the largest of all values in the "Rate" column, in each row.
 
@@ -82,12 +95,13 @@ JOIN AdventureWorks2022.HumanResources.Employee T
 JOIN AdventureWorks2022.HumanResources.EmployeePayHistory R
 	ON P.BusinessEntityID = R.BusinessEntityID
 ```
-
 #### Results:
 
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_02.JPG)
 
-### Exercise 3
+**[Back To The Top](#Overview-of-the-Section)**
+
+### OVER Exercise 3
 * Enhance your query from Exercise 2 by adding a derived column called "DiffFromAvgRate" that returns the result of the following calculation:
 * An employees's pay rate, MINUS the average of all values in the "Rate" column.
 
@@ -111,7 +125,9 @@ JOIN AdventureWorks2022.HumanResources.EmployeePayHistory R
 
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_03.JPG)
 
-### Exercise 4
+**[Back To The Top](#Overview-of-the-Section)**
+
+### OVER Exercise 4
 * Enhance your query from Exercise 3 by adding a derived column called "PercentofMaxRate" that returns the result of the following calculation:
 * An employees's pay rate, DIVIDED BY the maximum of all values in the "Rate" column, times 100.
 
@@ -139,7 +155,7 @@ JOIN AdventureWorks2022.HumanResources.EmployeePayHistory R
 **[Back To The Top](#Overview-of-the-Section)**
 
 #
-## PARTITION BY
+### PARTITION BY
 
 Allows us to compute aggregate totals for groups within our data, while still retaining row-level detail.
 
@@ -147,9 +163,7 @@ Assigns each row of your query output to a group, without collapsing your data i
 
 Instead of groups being assigned based on the distinct values of ALL the non-aggregated columns of our data, we need to specify the columns these groups will be based on. 
 
-## PARTITION BY - Exercises
-
-### Exercise 1
+### PARTITION Exercise 1
 
 **Create a query with the following columns:**
 
@@ -167,7 +181,6 @@ Instead of groups being assigned based on the distinct values of ALL the non-agg
 
 * All the tables can be inner joined, and you do not need to apply any criteria.
 
-#### Solution Exercise 1
 ```
 SELECT 
 ProductName = A.Name,
@@ -186,14 +199,14 @@ ON B.ProductCategoryID = C.ProductCategoryID
 
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_05.JPG)
 
+**[Back To The Top](#Overview-of-the-Section)**
 
-#### Exercise 2
+#### PARTITION Exercise 2
 
 * Enhance your query from Exercise 1 by adding a derived column called
 
 * "AvgPriceByCategory " that returns the average ListPrice for the product category in each given row.
 
-#### Solution Exercise 2
 ```
 SELECT 
 ProductName = A.Name,
@@ -211,13 +224,14 @@ ON B.ProductCategoryID = C.ProductCategoryID
 #### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_06.JPG)
 
-#### Exercise 3
+**[Back To The Top](#Overview-of-the-Section)**
+
+#### PARTITION Exercise 3
 
 * Enhance your query from Exercise 2 by adding a derived column called
 
 * "AvgPriceByCategoryAndSubcategory" that returns the average ListPrice for the product category AND subcategory in each given row.w.
 
-#### Solution Exercise 3
 ```
 SELECT 
 ProductName = A.Name,
@@ -236,7 +250,9 @@ ON B.ProductCategoryID = C.ProductCategoryID
 #### Results:
 ![Section_01](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_01_E_07.JPG)
 
-#### Exercise 4
+**[Back To The Top](#Overview-of-the-Section)**
+
+#### PARTITION Exercise 4
 
 * Enhance your query from Exercise 3 by adding a derived column called
 
@@ -244,7 +260,6 @@ ON B.ProductCategoryID = C.ProductCategoryID
 
 * A product's list price, MINUS the average ListPrice for that product’s category.
 
-#### Solution Exercise 4
 ```
 SELECT 
 ProductName = A.Name,
@@ -267,7 +282,7 @@ ON B.ProductCategoryID = C.ProductCategoryID
 **[Back To The Top](#Overview-of-the-Section)**
 
 #
-## ROW_NUMBER
+### ROW_NUMBER
 
 The ROW_NUMBER() is a window function that assigns a sequential integer to each row within the partition of a result set. The row number starts with 1 for the first row in each partition.
 
