@@ -761,7 +761,7 @@ ORDER BY 1
 **[Back To The Top](#Overview-of-the-Section)**
 
 #
-## PIVOT - Part 2
+### PIVOT - Part 2
 
 Create an alisa for "OrderQty" and order by most orders Quantity for [Bikes] and [Clothing].
 
