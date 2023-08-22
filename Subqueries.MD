@@ -8,12 +8,15 @@
     * **[SCALAR Exercise 1](#SCALAR-Exercise-1)**
     * **[SCALAR Exercise 2](#SCALAR-Exercise-2)**
     * **[SCALAR Exercise 3](#SCALAR-Exercise-3)**
-
 * **[CORRELATED Subqueries](#CORRELATED-Subqueries)**
+    * **[CORRELATED Exercise 1](#CORRELATED-Exercise-1)**
+    * **[CORRELATED Exercise 2](#CORRELATED-Exercise-2)**
 * **[EXISTS and NOT EXISTS Subqueries](#EXISTS-and-NOT-EXISTS-Subqueries)**
 * **[FOR XML PATH With STUFF Function](#FOR-XML-PATH-With-STUFF-Function)**
 * **[PIVOT - Part 1](#PIVOT---Part-1)**
 * **[PIVOT - Part 2](#PIVOT---Part-2)**
+
+
 
 
 ## Introducing Subqueries
@@ -301,7 +304,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader A
 
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_07.JPG)
 
-### Exercise 1
+**[Back To The Top](#Overview-of-the-Section)**
+
+### CORRELATED Exercise 1
 
 Write a query that outputs all records from the Purchasing.PurchaseOrderHeader table. Include the following columns from the table:
 
@@ -335,7 +340,9 @@ FROM AdventureWorks2022.Purchasing.PurchaseOrderHeader A
 
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_08.JPG)
 
-### Exercise 2
+**[Back To The Top](#Overview-of-the-Section)**
+
+### CORRELATED Exercise 2
 
 Modify your query to include a second derived field called **MostExpensiveItem.**
 
