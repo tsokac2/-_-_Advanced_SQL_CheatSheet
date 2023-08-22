@@ -2,12 +2,19 @@
 
 ## Overview of the Section
 * **[Introducing Subqueries](#Introducing-Subqueries)**
+    * **[Exercise 1](#Exercise-1)**
+    * **[Exercise 2](#Exercise-2)**
 * **[SCALAR Subqueries](#SCALAR-Subqueries)**
+    * **[SCALAR Exercise 1](#SCALAR-Exercise-1)**
+    * **[SCALAR Exercise 2](#SCALAR-Exercise-2)**
+    * **[SCALAR Exercise 3](#SCALAR-Exercise-3)**
+
 * **[CORRELATED Subqueries](#CORRELATED-Subqueries)**
 * **[EXISTS and NOT EXISTS Subqueries](#EXISTS-and-NOT-EXISTS-Subqueries)**
 * **[FOR XML PATH With STUFF Function](#FOR-XML-PATH-With-STUFF-Function)**
 * **[PIVOT - Part 1](#PIVOT---Part-1)**
 * **[PIVOT - Part 2](#PIVOT---Part-2)**
+
 
 ## Introducing Subqueries
 
@@ -106,6 +113,7 @@ WHERE PurchaseOrderRank <= 3
 
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_01.JPG)
 
+**[Back To The Top](#Overview-of-the-Section)**
 
 ### Exercise 2
 
@@ -178,7 +186,9 @@ ORDER BY ListPrice ASC
 
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_03.JPG)
 
-### Exercise 1
+**[Back To The Top](#Overview-of-the-Section)**
+
+### SCALAR Exercise 1
 
 Create a query that displays all rows and the following columns from the AdventureWorks2022.HumanResources.Employee table:
 
@@ -200,7 +210,9 @@ FROM AdventureWorks2022.HumanResources.Employee
 
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_04.JPG)
 
-### Exercise 2
+**[Back To The Top](#Overview-of-the-Section)**
+
+### SCALAR Exercise 2
 
 Add a new derived field to your query from Exercise 1, which returns the percent an individual employees' vacation hours are, of the maximum vacation hours for any employee. 
 
@@ -228,7 +240,9 @@ FROM AdventureWorks2022.HumanResources.Employee
 
 ![Section_02](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_02_E_05.JPG)
 
-### Exercise 3
+**[Back To The Top](#Overview-of-the-Section)**
+
+### SCALAR Exercise 3
 
 Refine your output with a criterion in the WHERE clause that filters out any employees whose vacation hours are less then 80% of the maximum amount of vacation hours for any one employee. 
 
