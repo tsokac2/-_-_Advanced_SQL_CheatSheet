@@ -26,7 +26,7 @@
 	* **[LEAD LAG Exercise 3](#LEAD-LAG-Exercise-3)**
 	* **[LEAD LAG Exercise 4](#LEAD-LAG-Exercise-4)**
 
-### Window Functions With OVER()
+### Window Functions With OVER
 Window functions allow you to include aggregate calculations in your queries, WITHOUT otherwise changing the output in any way.
 
 The aggregate calculations are simply tacked on to the query as an additional column.
