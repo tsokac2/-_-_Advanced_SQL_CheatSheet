@@ -5,7 +5,7 @@
     * **[Creating temporary tables](#Creating-temporary-tables)**
     * **[Temp Tables Exercise](#Temp-Tables-Exercise)**
 
-* **[Use Temp Tables when...](#Use-Temp-Tables-when...)**
+* **[Use Temp Tables when](#Use-Temp-Tables-when)**
 
 ### Temp Tables PART 1
 
@@ -156,7 +156,7 @@ DROP TABLE #PurchasesMinusTop10
 **[Back To The Top](#Overview-of-the-Section)**
 
 #
-### Use Temp Tables when...
+### Use Temp Tables when
 
 You need to reference one of your virtual tables in multiple outputs.
 
