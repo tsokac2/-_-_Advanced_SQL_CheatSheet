@@ -305,6 +305,8 @@ FROM Odds
 #### Results:
 ![Section_03](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03_E_33.JPG)
 
+**[Back To The Top](#Overview-of-the-Section)**
+
 ### Recursive CTEs - Exercise 2
 
 Use a recursive CTE to generate a date series of all FIRST days of the month (1/1/2021, 2/1/2021, etc.) 
