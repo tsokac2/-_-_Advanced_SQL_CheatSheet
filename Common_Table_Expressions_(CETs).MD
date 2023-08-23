@@ -9,7 +9,7 @@
     * **[Recursive CTEs - Exercise 1](#Recursive-CTEs---Exercise-1)**
     * **[Recursive CTEs - Exercise 2](#Recursive-CTEs---Exercise-2)**
 * **[Limitations of CTEs](#Limitations-of-CTEs)**
-* **[Use CTEs when...](#Use-CTEs-when...)**      
+* **[Use CTEs when](#Use-CTEs-when)**      
 
 ### Introducing Common Table Expression CTE
 
@@ -354,7 +354,7 @@ Virtual tables cannot be referenced individually, making debugging more difficul
 Certain optimization techniques are not available to CETs.
 
 #
-### Use CTEs when...
+### Use CTEs when
 
 You just need a single query output.
 

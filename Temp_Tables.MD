@@ -153,6 +153,8 @@ DROP TABLE #PurchasesMinusTop10
 #### Results:
 ![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_36.JPG)
 
+**[Back To The Top](#Overview-of-the-Section)**
+
 #
 ### Use Temp Tables when...
 
