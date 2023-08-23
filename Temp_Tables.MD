@@ -3,8 +3,9 @@
 ## Overview of the Section
 * **[Temp Tables PART 1](#Temp-Tables-PART-1)**
     * **[Creating temporary tables](#Creating-temporary-tables)**
+    * **[Temp Tables Exercise](#Temp-Tables-Exercise-1)**
 
-* **[Temp Tables PART 2](#Temp-Tables-PART-2)**
+* **[Use Temp Tables when...](#Use-Temp-Tables-when...)**
 
 ### Temp Tables PART 1
 
@@ -87,10 +88,76 @@ SELECT * FROM #Sales WHERE OrderRank <= 10
 DROP TABLE #Sales
 DROP TABLE #Top10Sales
 ```
-
 #### Results:
 ![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_35.JPG)
 
 **[Back To The Top](#Overview-of-the-Section)**
 
-### Temp Tables PART 2
+### Temp Tables Exercise
+
+Refactor your solution to the exercise from the section on CTEs (average sales/purchases minus top 10) using temp tables in place of CTEs.
+
+```
+SELECT 
+       OrderDate
+	  ,OrderMonth = DATEFROMPARTS(YEAR(OrderDate),MONTH(OrderDate),1)
+      ,TotalDue
+	  ,OrderRank = ROW_NUMBER() OVER(PARTITION BY DATEFROMPARTS(YEAR(OrderDate),MONTH(OrderDate),1) ORDER BY TotalDue DESC)
+INTO #Sales
+FROM AdventureWorks2022.Sales.SalesOrderHeader
+
+
+SELECT
+OrderMonth,
+TotalSales = SUM(TotalDue)
+INTO #SalesMinusTop10
+FROM #Sales
+WHERE OrderRank > 10
+GROUP BY OrderMonth
+
+
+SELECT 
+       OrderDate
+	  ,OrderMonth = DATEFROMPARTS(YEAR(OrderDate),MONTH(OrderDate),1)
+      ,TotalDue
+	  ,OrderRank = ROW_NUMBER() OVER(PARTITION BY DATEFROMPARTS(YEAR(OrderDate),MONTH(OrderDate),1) ORDER BY TotalDue DESC)
+INTO #Purchases
+FROM AdventureWorks2022.Purchasing.PurchaseOrderHeader
+
+
+SELECT
+OrderMonth,
+TotalPurchases = SUM(TotalDue)
+INTO #PurchasesMinusTop10
+FROM #Purchases
+WHERE OrderRank > 10
+GROUP BY OrderMonth
+
+
+SELECT
+A.OrderMonth,
+A.TotalSales,
+B.TotalPurchases
+
+FROM #SalesMinusTop10 A
+	JOIN #PurchasesMinusTop10 B
+		ON A.OrderMonth = B.OrderMonth
+
+ORDER BY 1
+
+DROP TABLE #Sales
+DROP TABLE #SalesMinusTop10
+DROP TABLE #Purchases
+DROP TABLE #PurchasesMinusTop10
+```
+#### Results:
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_36.JPG)
+
+#
+### Use Temp Tables when...
+
+You need to reference one of your virtual tables in multiple outputs.
+
+You need to join massive datasets in your virtual tables.
+
+You need a "script" instead of a query. 
