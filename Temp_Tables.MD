@@ -3,7 +3,7 @@
 ## Overview of the Section
 * **[Temp Tables PART 1](#Temp-Tables-PART-1)**
     * **[Creating temporary tables](#Creating-temporary-tables)**
-    * **[Temp Tables Exercise](#Temp-Tables-Exercise-1)**
+    * **[Temp Tables Exercise](#Temp-Tables-Exercise)**
 
 * **[Use Temp Tables when...](#Use-Temp-Tables-when...)**
 
