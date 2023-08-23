@@ -7,7 +7,8 @@
     * **[CTEs Exercise](#CTEs-Exercise)**
 * **[Recursive CTEs](#Recursive-CTEs)**
     * **[Recursive CTEs - Exercise 1](#Recursive-CTEs---Exercise-1)**
-    * **[Recursive CTEs - Exercise 2](#Recursive-CTEs---Exercise-2)**   
+    * **[Recursive CTEs - Exercise 2](#Recursive-CTEs---Exercise-2)**
+* **[Limitations of CTEs](#Limitations-of-CTEs)**   
 
 ### Introducing Common Table Expression CTE
 
@@ -338,3 +339,14 @@ OPTION (MAXRECURSION 120)
 ![Section_03](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03_E_34.JPG)
 
 **[Back To The Top](#Overview-of-the-Section)**
+#
+### Limitations of CTEs
+
+CTEs can only be used in the current query scope, meaning they cannot be referenced after the final SELECT.
+
+This can be a problem if you need to reuse your virtual tables multiple times for different purposes.
+
+Virtual tables cannot be referenced individually, making debugging more difficult.
+
+Certain optimization techniques are not available to CETs.
+
