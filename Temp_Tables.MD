@@ -5,6 +5,7 @@
     * **[Creating temporary tables](#Creating-temporary-tables)**
     * **[Temp Tables Exercise](#Temp-Tables-Exercise)**
 * **[CREATE and INSERT](#CREATE-and-INSERT)**
+    * **[CREATE and INSERT Exercise](#CREATE-and-INSERT-Exercise)**
 * **[Use Temp Tables when](#Use-Temp-Tables-when)**
 
 ### Temp Tables PART 1
@@ -173,7 +174,7 @@ Creates a clone table of the source table with exactly the same column names and
 Reads data from the source table
 Inserts data into the newly created table
 
-### Exercise
+### CREATE and INSERT Exercise
 
 Create Temp Table #Sales
 
