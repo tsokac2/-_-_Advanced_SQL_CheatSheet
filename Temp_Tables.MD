@@ -4,7 +4,7 @@
 * **[Temp Tables PART 1](#Temp-Tables-PART-1)**
     * **[Creating temporary tables](#Creating-temporary-tables)**
     * **[Temp Tables Exercise](#Temp-Tables-Exercise)**
-
+* **[CREATE and INSERT](#CREATE-and-INSERT)**
 * **[Use Temp Tables when](#Use-Temp-Tables-when)**
 
 ### Temp Tables PART 1
@@ -163,3 +163,55 @@ You need to reference one of your virtual tables in multiple outputs.
 You need to join massive datasets in your virtual tables.
 
 You need a "script" instead of a query. 
+
+#
+### CREATE and INSERT
+
+SELECT INTO statement is one of the easy ways to CREATE a new table and then copy the source table data into this newly created table. In other words, the SELECT INTO statement performs a combo task:
+
+Creates a clone table of the source table with exactly the same column names and data types
+Reads data from the source table
+Inserts data into the newly created table
+
+### Exercise
+
+Create Temp Table #Sales
+
+```
+CREATE TABLE #Sales
+(
+       OrderDate DATE
+	  ,OrderMonth DATE
+      ,TotalDue MONEY
+	  ,OrderRank INT
+)
+```
+
+Insert data in to temp #Sales table
+
+```
+INSERT INTO #Sales
+(
+       OrderDate
+	  ,OrderMonth
+      ,TotalDue
+	  ,OrderRank
+)
+SELECT 
+       OrderDate
+	  ,OrderMonth = DATEFROMPARTS(YEAR(OrderDate),MONTH(OrderDate),1)
+      ,TotalDue
+	  ,OrderRank = ROW_NUMBER() OVER(PARTITION BY DATEFROMPARTS(YEAR(OrderDate),MONTH(OrderDate),1) ORDER BY TotalDue DESC)
+
+FROM AdventureWorks2022.Sales.SalesOrderHeader
+```
+Test created temp table: #Sales
+
+```
+SELECT * FROM #Sales
+```
+
+#### Results:
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_37.JPG)
+
+**[Back To The Top](#Overview-of-the-Section)**
