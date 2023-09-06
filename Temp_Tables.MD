@@ -250,7 +250,7 @@ to distinguish total sales from total purchases. Make sure you apply the appropr
 
 from the appropriate copy of the table.
 
-Step 1 - Create Temp Table _#Orders_
+**Step 1** - Create Temp Table _#Orders_
 
 ```
 CREATE TABLE #Orders
@@ -262,7 +262,7 @@ CREATE TABLE #Orders
 )
 ```
 
-Step 2 - Insert sales data into Temp Table _#Orders_
+**Step 2** - Insert sales data into Temp Table _#Orders_
 
 ```
 INSERT INTO #Orders
@@ -280,7 +280,7 @@ SELECT
 
 FROM AdventureWorks2022.Sales.SalesOrderHeader
 ```
-Step 3 - Create Temp Table _#OrdersMinusTop10_
+**Step 3** - Create Temp Table _#OrdersMinusTop10_
 
 ```
 CREATE TABLE #OrdersMinusTop10
@@ -290,8 +290,7 @@ OrderType VARCHAR(32),
 TotalDue MONEY
 )
 ```
-
-Step 4 - Insert sales data into Temp Table _#OrdersMinusTop10_
+**Step 4** - Insert sales data into Temp Table _#OrdersMinusTop10_
 
 ```
 INSERT INTO #OrdersMinusTop10
@@ -308,12 +307,11 @@ FROM #Orders
 WHERE OrderRank > 10
 GROUP BY OrderMonth
 ```
-
-Step 5 - Empty out #Orders Temp Table
+**Step 5** - Empty out #Orders Temp Table
 
 ```TRUNCATE TABLE #Orders```
 
-Step 6 - Insert purchase data in to Temp Table #Orders
+**Step 6** - Insert purchase data in to Temp Table #Orders
 
 ```
 INSERT INTO #Orders
@@ -331,8 +329,7 @@ SELECT
 
 FROM AdventureWorks2022.Purchasing.PurchaseOrderHeader --purchase data
 ```
-
-Step 7 - Insert purchase data in to Temp Table #OrdersMinusTop10
+**Step 7** - Insert purchase data in to Temp Table #OrdersMinusTop10
 
 ```
 INSERT INTO #OrdersMinusTop10
@@ -349,8 +346,8 @@ FROM #Orders
 WHERE OrderRank > 10
 GROUP BY OrderMonth
 ```
+**Step 8**  - Final SELECT statement
 
-Step 7  - Final SELECT statement
 ```
 SELECT
 A.OrderMonth,
@@ -371,6 +368,6 @@ DROP TABLE #OrdersMinusTop10
 
 ```
 #### Results:
-![Section_03](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_03_E_38.JPG)
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_38.JPG)
 
 **[Back To The Top](#Overview-of-the-Section)**
