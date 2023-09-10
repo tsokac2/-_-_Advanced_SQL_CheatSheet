@@ -8,6 +8,8 @@
     * **[CREATE and INSERT Exercise](#CREATE-and-INSERT-Exercise)**
 * **[TRUNCATE](#TRUNCATE)**
     * **[TRUNCATE Exercise](#TRUNCATE-Exercise)**
+* **[UPDATE](#UPDATE)**
+    * **[UPDATE Exercise](#UPDATE-Exercise)**
 * **[Use Temp Tables when](#Use-Temp-Tables-when)**
 
 ### Temp Tables PART 1
@@ -371,3 +373,12 @@ DROP TABLE #OrdersMinusTop10
 ![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_38.JPG)
 
 **[Back To The Top](#Overview-of-the-Section)**
+
+#
+### UPDATE
+
+For modifying tables - no SELECT is required.
+
+
+
+#### UPDATE Exercise
