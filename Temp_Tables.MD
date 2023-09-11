@@ -10,6 +10,7 @@
     * **[TRUNCATE Exercise](#TRUNCATE-Exercise)**
 * **[UPDATE](#UPDATE)**
     * **[UPDATE Exercise](#UPDATE-Exercise)**
+* **[DELETE](#DELETE)**
 * **[Use Temp Tables when](#Use-Temp-Tables-when)**
 
 ### Temp Tables PART 1
@@ -382,3 +383,13 @@ For modifying tables - no SELECT is required.
 
 
 #### UPDATE Exercise
+
+
+**[Back To The Top](#Overview-of-the-Section)**
+
+#
+### DELETE
+
+Removing rows with precision.
+
+**[Back To The Top](#Overview-of-the-Section)**
