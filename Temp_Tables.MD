@@ -9,7 +9,8 @@
 * **[TRUNCATE](#TRUNCATE)**
     * **[TRUNCATE Exercise](#TRUNCATE-Exercise)**
 * **[UPDATE](#UPDATE)**
-    * **[UPDATE Exercise](#UPDATE-Exercise)**
+* **[CASE](#CASE)**
+    * **[UPDATE and CASE Exercise](#UPDATE-and-CASE-Exercise)**
 * **[DELETE](#DELETE)**
 * **[Use Temp Tables when](#Use-Temp-Tables-when)**
 
@@ -380,9 +381,27 @@ DROP TABLE #OrdersMinusTop10
 
 For modifying tables - no SELECT is required.
 
+To store data in tables, we use databases. 
+After the data is written to such tables, it is common that you need to update specific fields at some point throughout the data’s lifespan. 
+
+To do this, we can utilize the UPDATE statement in the SQL language. An Update query is a form of action query that makes several updates to multiple records at once.
 
 
-#### UPDATE Exercise
+### CASE
+Evaluates a list of conditions and returns one of multiple possible result expressions.
+
+The CASE expression has two formats:
+
+- The simple CASE expression compares an expression to a set of simple expressions to determine the result.
+
+- The searched CASE expression evaluates a set of Boolean expressions to determine the result.
+
+Both formats support an optional ELSE argument.
+
+CASE can be used in any statement or clause that allows a valid expression. For example, you can use CASE in statements such as SELECT, UPDATE, DELETE and SET, and in clauses such as <select_list>, IN, WHERE, ORDER BY, and HAVING.
+
+
+#### UPDATE and CASE Exercise
 
 
 **[Back To The Top](#Overview-of-the-Section)**
