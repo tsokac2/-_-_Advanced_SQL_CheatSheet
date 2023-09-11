@@ -400,8 +400,97 @@ Both formats support an optional ELSE argument.
 
 CASE can be used in any statement or clause that allows a valid expression. For example, you can use CASE in statements such as SELECT, UPDATE, DELETE and SET, and in clauses such as <select_list>, IN, WHERE, ORDER BY, and HAVING.
 
-
 #### UPDATE and CASE Exercise
+Update the value in the "OrderSubcategory" field as follows:
+
+The value in the field should consist of the following string values concatenated together in this order:
+
+- The value in the "OrderCategory" field
+- A space
+- A hyphen
+- Another space
+- The value in the "OrderAmtBucket" field
+
+**Step 1**
+```
+CREATE TABLE #SalesOrders
+(
+ SalesOrderID INT,
+ OrderDate DATE,
+ TaxAmt MONEY,
+ Freight MONEY,
+ TotalDue MONEY,
+ TaxFreightPercent FLOAT,
+ TaxFreightBucket VARCHAR(32),
+ OrderAmtBucket VARCHAR(32),
+ OrderCategory VARCHAR(32),
+ OrderSubcategory VARCHAR(32)
+)
+```
+**Step 2**
+```
+INSERT INTO #SalesOrders
+(
+ SalesOrderID,
+ OrderDate,
+ TaxAmt,
+ Freight,
+ TotalDue,
+ OrderCategory
+)
+SELECT
+ SalesOrderID,
+ OrderDate,
+ TaxAmt,
+ Freight,
+ TotalDue,
+ OrderCategory = 'Non-holiday Order'
+
+FROM [AdventureWorks2022].[Sales].[SalesOrderHeader]
+
+WHERE YEAR(OrderDate) = 2013
+```
+**Step 3**
+```
+UPDATE #SalesOrders
+SET 
+TaxFreightPercent = (TaxAmt + Freight)/TotalDue,
+OrderAmtBucket = 
+	CASE
+		WHEN TotalDue < 100 THEN 'Small'
+		WHEN TotalDue < 1000 THEN 'Medium'
+		ELSE 'Large'
+	END
+```
+**Step 4**
+```
+UPDATE #SalesOrders
+SET TaxFreightBucket = 
+	CASE
+		WHEN TaxFreightPercent < 0.1 THEN 'Small'
+		WHEN TaxFreightPercent < 0.2 THEN 'Medium'
+		ELSE 'Large'
+	END
+```
+**Step 5**
+```
+UPDATE #SalesOrders
+SET  OrderCategory = 'Holiday'
+FROM #SalesOrders
+WHERE DATEPART(quarter,OrderDate) = 4
+```
+**Step 6**
+```
+UPDATE #SalesOrders
+SET OrderSubcategory = OrderCategory + ' - ' + OrderAmtBucket
+```
+
+**Step 7**
+```
+SELECT * FROM #SalesOrders
+```
+#### Results:
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_39.JPG)
 
 
 **[Back To The Top](#Overview-of-the-Section)**
