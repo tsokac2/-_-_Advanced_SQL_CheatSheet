@@ -23,9 +23,7 @@ _Generally speaking, **JOINs** against or between very large tables_
 - Instead, use UPDATE statemenst to populate fields in a temp table, one source table in a time.
 - Apply indexes to fields that will be used in JOINs. 
 
-
-### Optimizing With UPDATE Exercise
-**Step 1. Starter Code:**
+**Starter Code - JOINs ainst or between very large tables**
 ```
 SELECT 
 	   A.SalesOrderID
@@ -48,12 +46,38 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader A
 
 WHERE YEAR(A.OrderDate) = 2012
 ```
-
 #### Results:
 ![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_40.JPG)
 
-**[Back To The Top](#Overview-of-the-Section)**
+### Optimizing With UPDATE Exercise
+**Step 1 - Create filtered temp table of sales order header table WHERE year = 2012**
+```
+CREATE TABLE #Sales2012 
+(
+SalesOrderID INT,
+OrderDate DATE
+)
+```
+```
+INSERT INTO #Sales2012
+(
+SalesOrderID,
+OrderDate
+)
+```
+```
+SELECT
+SalesOrderID,
+OrderDate
 
+FROM AdventureWorks2022.Sales.SalesOrderHeader
+
+WHERE YEAR(OrderDate) = 2012
+```
+#### Results:
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_41.JPG)
+
+**[Back To The Top](#Overview-of-the-Section)**
 
 ### An Improved EXISTS With UPDATE
 
