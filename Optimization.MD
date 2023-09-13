@@ -1,6 +1,6 @@
 <h1 align="center">Optimization</h1>
 
-## Overview of the Section
+### Overview of the Section
 * **[Optimizing With UPDATE](#Optimizing-With-UPDATE)**
     * **[Optimizing With UPDATE Exercise](#Optimizing-With-UPDATE-Exercise)**
 * **[An Improved EXISTS With UPDATE](#An-Improved-EXISTS-With-UPDATE)**
@@ -10,18 +10,7 @@
 	* **[Optimizing With Indexes Exercise](#Optimizing-With-Indexes-Exercise)**
 * **[Lookup Tables](#Lookup-Tables)**
 	* **[Lookup Tables Exercise](#Lookup-Tables-Exercise)**
-
-
-
-
-* **[TRUNCATE](#TRUNCATE)**
-    * **[TRUNCATE Exercise](#TRUNCATE-Exercise)**
-* **[UPDATE](#UPDATE)**
-* **[CASE](#CASE)**
-    * **[UPDATE and CASE Exercise](#UPDATE-and-CASE-Exercise)**
-* **[DELETE](#DELETE)**
-* **[Use Temp Tables when](#Use-Temp-Tables-when)**
-
+#
 ### Optimizing With UPDATE
 
 
@@ -45,3 +34,20 @@
 
 **[Back To The Top](#Overview-of-the-Section)**
 
+### Introducing Indexes
+
+**[Back To The Top](#Overview-of-the-Section)**
+
+### Optimizing With Indexes Example
+
+**[Back To The Top](#Overview-of-the-Section)**
+
+### Optimizing With Indexes Exercise
+
+**[Back To The Top](#Overview-of-the-Section)**
+
+
+### Lookup Tables
+**[Back To The Top](#Overview-of-the-Section)**
+### Lookup Tables Exercise
+**[Back To The Top](#Overview-of-the-Section)**

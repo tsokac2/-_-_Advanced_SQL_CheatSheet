@@ -1,6 +1,6 @@
 <h1 align="center">Subqueries</h1>
 
-## Overview of the Section
+### Overview of the Section
 * **[Introducing Subqueries](#Introducing-Subqueries)**
     * **[Exercise 1](#Exercise-1)**
     * **[Exercise 2](#Exercise-2)**
@@ -22,7 +22,7 @@
 * **[PIVOT - Part 2](#PIVOT---Part-2)**
     * **[PIVOT Exercise 1](#PIVOT-Exercise-1)**
     * **[PIVOT Exercise 2](#PIVOT-Exercise-2)**
-
+#
 ### Introducing Subqueries
 
 A subquery is a SQL query nested inside a larger query.

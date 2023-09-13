@@ -1,6 +1,6 @@
 <h1 align="center">Advanced Analysis With Window Functions</h1>
 
-## Overview of the Section
+### Overview of the Section
 * **[Window Functions With OVER](#Window-Functions-With-OVER)**
 	* **[OVER Exercise 1](#OVER-Exercise-1)**
 	* **[OVER Exercise 2](#OVER-Exercise-2)**
@@ -25,7 +25,7 @@
 	* **[LEAD LAG Exercise 2](#LEAD-LAG-Exercise-2)**
 	* **[LEAD LAG Exercise 3](#LEAD-LAG-Exercise-3)**
 	* **[LEAD LAG Exercise 4](#LEAD-LAG-Exercise-4)**
-
+#
 ### Window Functions With OVER
 Window functions allow you to include aggregate calculations in your queries, WITHOUT otherwise changing the output in any way.
 

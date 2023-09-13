@@ -1,6 +1,6 @@
 <h1 align="center">Common_Table_Expressions_(CETs)</h1>
 
-## Overview of the Section
+### Overview of the Section
 * **[Introducing Common Table Expression CTE](#Introducing-Common-Table-Expression-CTE)**
     * **[Subquery approach](#Subquery-approach)**
     * **[Refactored CTE approach](#Refactored-CTE-approach)**
@@ -10,7 +10,7 @@
     * **[Recursive CTEs - Exercise 2](#Recursive-CTEs---Exercise-2)**
 * **[Limitations of CTEs](#Limitations-of-CTEs)**
 * **[Use CTEs when](#Use-CTEs-when)**      
-
+#
 ### Introducing Common Table Expression CTE
 
 The Common Table Expression (CTE) is a powerful construct in SQL that helps simplify a query. 
