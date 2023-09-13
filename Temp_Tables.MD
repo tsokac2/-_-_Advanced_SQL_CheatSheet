@@ -500,4 +500,36 @@ SELECT * FROM #SalesOrders
 
 Removing rows with precision.
 
+#### Selecting from temp table with WHERE clause
+
+**Step 1**
+```
+SELECT 
+       OrderDate
+	  ,OrderMonth = DATEFROMPARTS(YEAR(OrderDate),MONTH(OrderDate),1)
+      ,TotalDue
+	  ,OrderRank = ROW_NUMBER() OVER(PARTITION BY DATEFROMPARTS(YEAR(OrderDate),MONTH(OrderDate),1) ORDER BY TotalDue DESC)
+
+INTO #Sales
+
+FROM AdventureWorks2022.Sales.SalesOrderHeader
+```
+
+**Step 2**
+```
+SELECT
+*
+FROM #Sales
+WHERE OrderRank <= 10
+
+DROP TABLE #Sales
+```
+#### Results:
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_40.JPG)
+
+
+**[Back To The Top](#Overview-of-the-Section)**
+
+
+
 **[Back To The Top](#Overview-of-the-Section)**
