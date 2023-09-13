@@ -1,6 +1,6 @@
 <h1 align="center">Temp Tables</h1>
 
-## Overview of the Section
+### Overview of the Section
 * **[Temp Tables PART 1](#Temp-Tables-PART-1)**
     * **[Creating temporary tables](#Creating-temporary-tables)**
     * **[Temp Tables Exercise](#Temp-Tables-Exercise)**
@@ -13,7 +13,7 @@
     * **[UPDATE and CASE Exercise](#UPDATE-and-CASE-Exercise)**
 * **[DELETE](#DELETE)**
 * **[Use Temp Tables when](#Use-Temp-Tables-when)**
-
+#
 ### Temp Tables PART 1
 
 A temporary SQL table, also known as a temp table, is a table that is created and used within the context of a specific session or transaction in a database management system. 
