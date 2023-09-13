@@ -6,11 +6,14 @@
 	* **[Optimizing With UPDATE Exercise 2](#Optimizing-With-UPDATE-Exercise-2)**
 * **[An Improved EXISTS With UPDATE](#An-Improved-EXISTS-With-UPDATE)**
     * **[An Improved EXISTS With UPDATE Exercise](#An-Improved-EXISTS-With-UPDATE-Exercise)**
+* **[When shouldyou use what technique](#When-should-you-use-what-technique)**
 * **[Introducing Indexes](#Introducing-Indexes)**
     * **[Optimizing With Indexes Example](#Optimizing-With-Indexes-Example)**
 	* **[Optimizing With Indexes Exercise](#Optimizing-With-Indexes-Exercise)**
 * **[Lookup Tables](#Lookup-Tables)**
 	* **[Lookup Tables Exercise](#Lookup-Tables-Exercise)**
+
+	
 #
 ### Optimizing With UPDATE
 What slows down queries the most?
@@ -249,8 +252,13 @@ SELECT * FROM #PersonContactInfo
 ### An Improved EXISTS With UPDATE Exercise
 
 
-#### Results:
-![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_35.JPG)
+**[Back To The Top](#Overview-of-the-Section)**
+
+### When should you use what technique
+- If you need to see all matches from the many sides of the relationship, use a JOIN.
+- If you don't want to see all matches from the many sides AND don't care to see any information about those matches(other than their existence), EXISTS is fine.
+- If you don't want to see all matches from the many sides, but would like some information about a (any) match that was returned, use UPDATE.
+
 
 **[Back To The Top](#Overview-of-the-Section)**
 
