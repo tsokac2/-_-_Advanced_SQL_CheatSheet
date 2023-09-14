@@ -8,7 +8,7 @@
     * **[An Improved EXISTS With UPDATE Exercise](#An-Improved-EXISTS-With-UPDATE-Exercise)**
 * **[When shouldyou use what technique](#When-should-you-use-what-technique)**
 * **[Introducing Indexes](#Introducing-Indexes)**
-	* **[What are indexes?](#What-are-indexes\?)**
+	* **[What are indexes\?](#What-are-indexes\?)**
 	* **[Clustered Indexes](#Clustered-Indexes)**
 	* **[Clustered-Indexes:-Strategies](#Clustered-Indexes-Strategies)**
 	* **[Non-clustered-Indexes](#Non-clustered-Indexes)**
