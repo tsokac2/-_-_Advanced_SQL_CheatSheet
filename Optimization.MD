@@ -8,11 +8,11 @@
     * **[An Improved EXISTS With UPDATE Exercise](#An-Improved-EXISTS-With-UPDATE-Exercise)**
 * **[When shouldyou use what technique](#When-should-you-use-what-technique)**
 * **[Introducing Indexes](#Introducing-Indexes)**
-	* **[What-are-indexes?](#What-are-indexes?)**
+	* **[What-are-indexes?](#What-are-indexes[?])**
 	* **[Clustered Indexes](#Clustered-Indexes)**
-	* **[Clustered-Indexes:-Strategies](#Clustered-Indexes:-Strategies)**
+	* **[Clustered-Indexes:-Strategies](#Clustered-Indexes-Strategies)**
 	* **[Non-clustered-Indexes](#Non-clustered-Indexes)**
-	* **[Non-Clustered Indexes: Strategies](#Non-Clustered-Indexes:-Strategies)**
+	* **[Non-Clustered Indexes: Strategies](#Non-Clustered-Indexes-Strategies)**
 	* **[Indexes: General Approach](#Indexes:-General-Approach)**
     * **[Optimizing With Indexes Example](#Optimizing-With-Indexes-Example)**
 	* **[Optimizing With Indexes Exercise](#Optimizing-With-Indexes-Exercise)**
@@ -339,12 +339,12 @@ SELECT * FROM #Purchases WHERE RejectedQty IS NOT NULL
 
 ### Introducing Indexes
 
-#### What are indexes?
+#### What are indexes
 
 #### Clustered Indexes
-#### Clustered Indexes: Strategies
+#### Clustered Indexes Strategies
 #### Non-clustered Indexes
-#### Non-Clustered Indexes: Strategies
+#### Non-Clustered Indexes Strategies
 #### Indexes: General Approach
 
 **[Back To The Top](#Overview-of-the-Section)**
