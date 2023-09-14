@@ -12,8 +12,6 @@
 	* **[Optimizing With Indexes Exercise](#Optimizing-With-Indexes-Exercise)**
 * **[Lookup Tables](#Lookup-Tables)**
 	* **[Lookup Tables Exercise](#Lookup-Tables-Exercise)**
-
-	
 #
 ### Optimizing With UPDATE
 What slows down queries the most?
@@ -248,6 +246,11 @@ SELECT * FROM #PersonContactInfo
 
 ### An Improved EXISTS With UPDATE
 
+EXISTS strengths and weaknesses
+
+- EXISTS lets you check for matching records from the many sides of a relationship, without resulting in duplicated data from one side.
+- EXISTS works fine in this scenario as long as you don't need any additional information about the match, other than that it exists.
+- However, if you need to see any data points about the match, UPDATE can be a superior alternative to EXISTS.
 
 ### An Improved EXISTS With UPDATE Exercise
 
