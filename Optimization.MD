@@ -339,7 +339,7 @@ SELECT * FROM #Purchases WHERE RejectedQty IS NOT NULL
 
 ### Introducing Indexes
 
-#### What are indexes
+#### What are indexes?
 
 #### Clustered Indexes
 #### Clustered Indexes Strategies
