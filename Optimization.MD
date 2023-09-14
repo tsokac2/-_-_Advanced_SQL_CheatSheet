@@ -254,6 +254,72 @@ EXISTS strengths and weaknesses
 
 ### An Improved EXISTS With UPDATE Exercise
 
+Re-write the query, using temp tables and UPDATEs instead of EXISTS.
+
+In addition to the three columns in the original query, you should also include a fourth column called "RejectedQty", which has one value for rejected quantity from the Purchasing.PurchaseOrderDetail table.
+
+**Starter Code Query**
+```
+SELECT
+       A.PurchaseOrderID,
+	   A.OrderDate,
+	   A.TotalDue
+
+FROM AdventureWorks2022.Purchasing.PurchaseOrderHeader A
+
+WHERE EXISTS (
+	SELECT
+	1
+	FROM AdventureWorks2022.Purchasing.PurchaseOrderDetail B
+	WHERE A.PurchaseOrderID = B.PurchaseOrderID
+		AND B.RejectedQty > 5
+)
+
+ORDER BY 1
+```
+
+**Re-write Step 1**
+```
+CREATE TABLE #Purchases
+(
+PurchaseOrderID INT,
+OrderDate DATE,
+TotalDue MONEY,
+RejectedQty INT
+)
+```
+**Re-write Step 2**
+```
+INSERT INTO #Purchases
+(
+PurchaseOrderID,
+OrderDate,
+TotalDue
+)
+
+SELECT
+PurchaseOrderID,
+OrderDate,
+TotalDue
+
+FROM AdventureWorks2022.Purchasing.PurchaseOrderHeader
+```
+**Re-write Step 3**
+```
+UPDATE A
+	SET RejectedQty = B.RejectedQty
+
+FROM #Purchases A
+	JOIN AdventureWorks2022.Purchasing.PurchaseOrderDetail B
+		ON A.PurchaseOrderID = B.PurchaseOrderID
+WHERE B.RejectedQty > 5
+```
+**Re-write Step 4**
+```
+SELECT * FROM #Purchases WHERE RejectedQty IS NOT NULL
+```
+#### Results:
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_44.JPG)
 
 **[Back To The Top](#Overview-of-the-Section)**
 
@@ -261,7 +327,6 @@ EXISTS strengths and weaknesses
 - If you need to see all matches from the many sides of the relationship, use a JOIN.
 - If you don't want to see all matches from the many sides AND don't care to see any information about those matches(other than their existence), EXISTS is fine.
 - If you don't want to see all matches from the many sides, but would like some information about a (any) match that was returned, use UPDATE.
-
 
 **[Back To The Top](#Overview-of-the-Section)**
 
