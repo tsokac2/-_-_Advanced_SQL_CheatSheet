@@ -467,6 +467,7 @@ Make something permanent with your knowledge of temp tables.
 #### Benefits of lookup tables:
 - Eliminate duplicated effort by locating frequently used attributes in one place.
 - Promote data integrity by consolidating a "single version of the truth" in a central location.
+
 **[Back To The Top](#Overview-of-the-Section)**
 
 ### Lookup Tables Exercise
