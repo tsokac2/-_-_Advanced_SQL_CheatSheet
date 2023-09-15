@@ -457,5 +457,6 @@ SELECT * FROM #PersonContactInfo
 
 ### Lookup Tables
 **[Back To The Top](#Overview-of-the-Section)**
+
 ### Lookup Tables Exercise
 **[Back To The Top](#Overview-of-the-Section)**
