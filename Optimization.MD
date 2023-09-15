@@ -456,9 +456,152 @@ SELECT * FROM #PersonContactInfo
 ![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_45.JPG)
 **[Back To The Top](#Overview-of-the-Section)**
 
-
 ### Lookup Tables
+Make something permanent with your knowledge of temp tables.
+
+**DDL (Data Definition Language)** commands pertain to the structure and definition of a table and include CREATE, DROP, and TRUNCATE.
+
+**DML (Data Manipulation Language)** command manipulates data within tables, and includes INSERT, UPDATE, and DELETE.
+
+#### Benefits of lookup tables:
+- Eliminate duplicated effort by locating frequently used attributes in one place.
+- Promote data integrity by consolidating a "single version of the truth" in a central location.
 **[Back To The Top](#Overview-of-the-Section)**
 
 ### Lookup Tables Exercise
+**Step 1 Create Table**
+```
+CREATE TABLE Adventureworks2022.dbo.Calendar
+(
+DateValue DATE,
+DayOfWeekNumber INT,
+DayOfWeekName VARCHAR(32),
+DayOfMonthNumber INT,
+MonthNumber INT,
+YearNumber INT,
+WeekendFlag TINYINT,
+HolidayFlag TINYINT
+)
+```
+**Step 2 Insert values manually**
+```
+INSERT INTO Adventureworks2022.dbo.Calendar
+(
+DateValue,
+DayOfWeekNumber,
+DayOfWeekName,
+DayOfMonthNumber,
+MonthNumber,
+YearNumber,
+WeekendFlag,
+HolidayFlag
+)
+
+VALUES
+(CAST('01-01-2011' AS DATE),7,'Saturday',1,1,2011,1,1),
+(CAST('01-02-2011' AS DATE),1,'Sunday',2,1,2011,1,0)
+```
+**Step 3**
+```
+SELECT * FROM Adventureworks2022.dbo.Calendar
+```
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_46.JPG)
+
+**Step 4 Truncate manually inserted values**
+```
+TRUNCATE TABLE Adventureworks2022.dbo.Calendar
+```
+**Step 5 Insert dates to table with recursive CTE**
+```
+WITH Dates AS
+(
+SELECT
+ CAST('01-01-2011' AS DATE) AS MyDate
+
+UNION ALL
+
+SELECT
+DATEADD(DAY, 1, MyDate)
+FROM Dates
+WHERE MyDate < CAST('12-31-2030' AS DATE)
+)
+
+INSERT INTO AdventureWorks2022.dbo.Calendar
+(
+DateValue
+)
+SELECT
+MyDate
+
+FROM Dates
+OPTION (MAXRECURSION 10000)
+```
+**Step 6**
+```
+SELECT * FROM AdventureWorks2022.dbo.Calendar
+```
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_47.JPG)
+
+**Step 7 Update NULL fields in Calendar table**
+```
+UPDATE AdventureWorks2022.dbo.Calendar_Test
+SET
+DayOfWeekNumber = DATEPART(WEEKDAY,DateValue),
+DayOfWeekName = FORMAT(DateValue,'dddd'),
+DayOfMonthNumber = DAY(DateValue),
+MonthNumber = MONTH(DateValue),
+YearNumber = YEAR(DateValue)
+```
+**Step 8**
+```
+SELECT * FROM AdventureWorks2022.dbo.Calendar
+```
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_48.JPG)
+
+**Step 9**
+```
+UPDATE AdventureWorks2022.dbo.Calendar_Test
+SET
+WeekendFlag = 
+	CASE
+		WHEN DayOfWeekNumber IN(1,7) THEN 1
+		ELSE 0
+	END
+```
+**Step 10**
+```
+SELECT * FROM AdventureWorks2022.dbo.Calendar
+```
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_49.JPG)
+
+**Step 11**
+```
+UPDATE AdventureWorks2022.dbo.Calendar
+SET
+HolidayFlag =
+	CASE
+		WHEN DayOfMonthNumber = 1 AND MonthNumber = 1 THEN 1
+		ELSE 0
+	END
+```
+**Step 12**
+```
+SELECT * FROM AdventureWorks2022.dbo.Calendar
+```
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_50.JPG)
+
+**Step 13 Step 13 Use Calendar table in a query**
+```
+SELECT
+A.*
+
+FROM AdventureWorks2022.Sales.SalesOrderHeader A
+	JOIN AdventureWorks2022.dbo.Calendar_Test B
+		ON A.OrderDate = B.DateValue
+
+WHERE B.WeekendFlag = 1
+```
+#### Results:
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_51.JPG)
+
 **[Back To The Top](#Overview-of-the-Section)**
