@@ -454,6 +454,7 @@ SELECT * FROM #PersonContactInfo
 ```
 #### Results:
 ![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_45.JPG)
+
 **[Back To The Top](#Overview-of-the-Section)**
 
 ### Lookup Tables
