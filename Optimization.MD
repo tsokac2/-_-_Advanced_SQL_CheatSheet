@@ -340,9 +340,22 @@ SELECT * FROM #Purchases WHERE RejectedQty IS NOT NULL
 ### Introducing Indexes
 
 #### What are indexes
+- Indexes are database objects that can make queries against your tables faster. 
+- They do this by sorting the data in the fields they apply to – either in the table itself or in a separate data structure. 
+- This sorting allows the database engine to locate records within a table without having to search through the table row-by-row. 
+- There are two types of indexes – clustered and non-clustered.
 
 #### Clustered Indexes
+- The rows of a table with a clustered index are physically sorted based on the field or fields the index is applied to.
+- A table with a primary key is given a clustered index (based on the primary key field) by default.
+- Most tables should have at least a clustered index, as queries against tables with a clustered index generally tend to be faster. 
+- A table may only have one clustered index.
+
 #### Clustered Indexes Strategies
+- Apply a clustered index to whatever field – or fields - are most likely to be used in a join against the table.
+- Ideally this field (or combination of fields) should also be the one that most uniquely defines a record in the table.
+- Whatever field would be a good candidate for a primary key of a table, is usually also a good candidate for a clustered index.
+
 #### Non-clustered Indexes
 #### Non-Clustered Indexes Strategies
 #### Indexes: General Approach
