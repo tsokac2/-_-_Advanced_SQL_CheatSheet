@@ -374,12 +374,84 @@ Indexes take up memory in the database, so only add them when they are really ne
 
 **[Back To The Top](#Overview-of-the-Section)**
 
-### Optimizing With Indexes Example
-
-**[Back To The Top](#Overview-of-the-Section)**
-
 ### Optimizing With Indexes Exercise
 
+**Step 1**
+```
+CREATE TABLE #PersonContactInfo
+(
+	   BusinessEntityID INT
+      ,Title VARCHAR(8)
+      ,FirstName VARCHAR(50)
+      ,MiddleName VARCHAR(50)
+      ,LastName VARCHAR(50)
+	  ,PhoneNumber VARCHAR(25)
+	  ,PhoneNumberTypeID VARCHAR(25)
+	  ,PhoneNumberType VARCHAR(25)
+	  ,EmailAddress VARCHAR(50)
+)
+```
+**Step 2**
+```
+INSERT INTO #PersonContactInfo
+(
+	   BusinessEntityID
+      ,Title
+      ,FirstName
+      ,MiddleName
+      ,LastName
+)
+
+SELECT
+	   BusinessEntityID
+      ,Title
+      ,FirstName
+      ,MiddleName
+      ,LastName
+
+FROM AdventureWorks2022.Person.Person
+```
+**Step 3**
+```
+CREATE CLUSTERED INDEX pci_idx1 ON #PersonContactInfo(BusinessEntityID)
+```
+**Step 4**
+```
+UPDATE A
+SET
+	PhoneNumber = B.PhoneNumber,
+	PhoneNumberTypeID = B.PhoneNumberTypeID
+
+FROM #PersonContactInfo A
+	JOIN AdventureWorks2022.Person.PersonPhone B
+		ON A.BusinessEntityID = B.BusinessEntityID
+```
+**Step 5**
+```
+CREATE NONCLUSTERED INDEX pci_idx2 ON #PersonContactInfo(PhoneNumberTypeID)
+```
+**Step 6**
+```
+UPDATE A
+SET	PhoneNumberType = B.Name
+
+FROM #PersonContactInfo A
+	JOIN AdventureWorks2022.Person.PhoneNumberType B
+		ON A.PhoneNumberTypeID = B.PhoneNumberTypeID
+```
+**Step 7**
+```
+UPDATE A
+SET	EmailAddress = B.EmailAddress
+
+FROM #PersonContactInfo A
+	JOIN AdventureWorks2022.Person.EmailAddress B
+		ON A.BusinessEntityID = B.BusinessEntityID
+```
+**Step 8**
+```
+SELECT * FROM #PersonContactInfo
+```
 **[Back To The Top](#Overview-of-the-Section)**
 
 
