@@ -14,7 +14,6 @@
 	* **[Non-clustered-Indexes](#Non-clustered-Indexes)**
 	* **[Non-Clustered Indexes Strategies](#Non-Clustered-Indexes-Strategies)**
 	* **[Indexes General Approach](#Indexes-General-Approach)**
-    * **[Optimizing With Indexes Example](#Optimizing-With-Indexes-Example)**
 	* **[Optimizing With Indexes Exercise](#Optimizing-With-Indexes-Exercise)**
 * **[Lookup Tables](#Lookup-Tables)**
 	* **[Lookup Tables Exercise](#Lookup-Tables-Exercise)**
