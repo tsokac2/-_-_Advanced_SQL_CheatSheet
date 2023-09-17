@@ -67,7 +67,6 @@ SELECT
 INTO #Sales
 FROM AdventureWorks2022.Sales.SalesOrderHeader
 
-
 SELECT
 	OrderMonth,
 	Top10Total = SUM(TotalDue)
@@ -113,7 +112,6 @@ SELECT
 INTO #Sales
 FROM AdventureWorks2022.Sales.SalesOrderHeader
 
-
 SELECT
 OrderMonth,
 TotalSales = SUM(TotalDue)
@@ -121,7 +119,6 @@ INTO #SalesMinusTop10
 FROM #Sales
 WHERE OrderRank > 10
 GROUP BY OrderMonth
-
 
 SELECT 
        OrderDate
@@ -131,7 +128,6 @@ SELECT
 INTO #Purchases
 FROM AdventureWorks2022.Purchasing.PurchaseOrderHeader
 
-
 SELECT
 OrderMonth,
 TotalPurchases = SUM(TotalDue)
@@ -139,7 +135,6 @@ INTO #PurchasesMinusTop10
 FROM #Purchases
 WHERE OrderRank > 10
 GROUP BY OrderMonth
-
 
 SELECT
 A.OrderMonth,
@@ -165,11 +160,9 @@ DROP TABLE #PurchasesMinusTop10
 #
 ### Use Temp Tables when
 
-You need to reference one of your virtual tables in multiple outputs.
-
-You need to join massive datasets in your virtual tables.
-
-You need a "script" instead of a query. 
+- You need to reference one of your virtual tables in multiple outputs.
+- You need to join massive datasets in your virtual tables.
+- You need a "script" instead of a query. 
 
 #
 ### CREATE and INSERT
@@ -246,7 +239,6 @@ For whatever copy of the table you put after the FROM, include the filtering cri
 For the other copy of the table, apply the filtering criteria directly in the join.
 
 These different "cuts" of the same table will accomplish the same thing as two distinct tables did previously.
-
 
 In the SELECT clause of your final query, you will probably need to apply aliases to a couple of field names
 
@@ -386,7 +378,6 @@ After the data is written to such tables, it is common that you need to update s
 
 To do this, we can utilize the UPDATE statement in the SQL language. An Update query is a form of action query that makes several updates to multiple records at once.
 
-
 ### CASE
 Evaluates a list of conditions and returns one of multiple possible result expressions.
 
@@ -491,7 +482,6 @@ SELECT * FROM #SalesOrders
 ```
 #### Results:
 ![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_39.JPG)
-
 
 **[Back To The Top](#Overview-of-the-Section)**
 

@@ -4,7 +4,19 @@
 * **[Variables](#Variables)**
     * **[Variables Exercise 1](#Variables-Exercise-1)**
 	* **[Variables Exercise 2](#Variables-Exercise-2)**
-	
+* **[Introducing User Defined Functions](#Introducing-User-Defined-Functions)**
+* **[Making Functions Flexible With Parameters](#Making-Functions-Flexible-With-Parameters)**
+	* **[User Defined Functions Exercise 1](#User-Defined-Functions-Exercise-1)**
+	* **[User Defined Functions Exercise 2](#User-Defined-Functions-Exercise-2)**
+* **[Stored Procedures](#Stored-Procedures)**
+	* **[Stored Procedures Exercise](#Stored-Procedures-Exercise)**
+* **[Control Flow With IF Statements](#Control-Flow-With-IF-Statements)**
+* **[Using Multiple IF Statements](#Using-Multiple-IF-Statements)**
+	* **[Using Multiple IF Statements Exercise](#Using-Multiple-IF-Statements-Exercise)**
+* **[Dynamic SQL Part 1](#Dynamic-SQL-Part-1)**
+* **[Dynamic SQL Part 2](#Dynamic-SQL-Part-2)**
+	* **[Dynamic SQL Exercise 1](#Dynamic-SQL-Exercise-1)**
+	* **[Dynamic SQL Exercise 2](#Dynamic-SQL-Exercise-2)**
 
 #
 ### Variables
@@ -84,3 +96,52 @@ SELECT @PayPeriodEnd
 ![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_54.JPG)
 
 **[Back To The Top](#Overview-of-the-Section)**
+
+#
+### Introducing User Defined Functions
+
+**[Back To The Top](#Overview-of-the-Section)**
+
+#
+### Making Functions Flexible With Parameters
+
+### User Defined Functions Exercise 1
+### User Defined Functions Exercise 2
+
+**[Back To The Top](#Overview-of-the-Section)**
+
+#
+### Stored Procedures
+
+### Stored Procedures Exercise
+
+**[Back To The Top](#Overview-of-the-Section)**
+
+#
+### Control Flow With IF Statements
+
+### Control Flow With IF Statements Exercise
+
+**[Back To The Top](#Overview-of-the-Section)**
+
+#
+### Using Multiple IF Statements
+
+### Using Multiple IF Statements Exercise
+
+**[Back To The Top](#Overview-of-the-Section)**
+
+#
+### Dynamic SQL Part 1
+
+**[Back To The Top](#Overview-of-the-Section)**
+
+#
+### Dynamic SQL Part 2
+
+### Dynamic SQL Exercise 1
+
+### Dynamic SQL Exercise 2
+
+**[Back To The Top](#Overview-of-the-Section)**
+

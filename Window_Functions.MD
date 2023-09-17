@@ -195,7 +195,6 @@ A.ListPrice,
 ProductSubcategory = B.Name,
 ProductCategory = C.Name
 
-
 FROM AdventureWorks2022.Production.Product A
 JOIN AdventureWorks2022.Production.ProductSubcategory B
 ON A.ProductSubcategoryID = B.ProductSubcategoryID
