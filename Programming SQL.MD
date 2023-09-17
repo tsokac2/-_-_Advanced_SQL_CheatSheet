@@ -138,16 +138,160 @@ WHERE YEAR(A.OrderDate) = 2011
 
 #
 ### Making Functions Flexible With Parameters
+Procedure:
+- Specify a name for the function.
+- Specify a name and data type for each input parameter.
+- Specify the RETURNS keyword and the data type of the scalar return value.
+- Specify the BEGIN keyword to introduce the function-body.
+- Specify the function body.
+- Specify the END keyword.
+
+**Correlated Subquery Example:**
+```
+SELECT
+	   SalesOrderID
+      ,OrderDate
+      ,DueDate
+      ,ShipDate
+	  ,ElapsedBusinessDays = (
+		SELECT
+		COUNT(*)
+		FROM AdventureWorks2022.dbo.Calendar B
+		WHERE B.DateValue BETWEEN A.OrderDate AND A.ShipDate
+			AND B.WeekendFlag = 0
+			AND B.HolidayFlag = 0
+	  ) - 1
+
+FROM AdventureWorks2022.Sales.SalesOrderHeader A
+
+WHERE YEAR(A.OrderDate) = 2011
+```
+**Rewriting as a fucntion, with variables:**
+```
+CREATE FUNCTION dbo.ufnElapsedBusinessDays(@StartDate DATE, @EndDate DATE)
+
+RETURNS INT
+AS  
+BEGIN
+	RETURN 
+		(
+			SELECT
+				COUNT(*)
+			FROM AdventureWorks2022.dbo.Calendar
+
+			WHERE DateValue BETWEEN @StartDate AND @EndDate
+				AND WeekendFlag = 0
+				AND HolidayFlag = 0
+		)	- 1
+END
+```
+**Using the function in a query**
+```
+SELECT
+	   SalesOrderID
+      ,OrderDate
+      ,DueDate
+      ,ShipDate
+	  ,ElapsedBusinessDays = dbo.ufnElapsedBusinessDays(OrderDate,ShipDate)
+
+FROM AdventureWorks2022.Sales.SalesOrderHeader
+
+WHERE YEAR(OrderDate) = 2011
+```
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_56.JPG)
 
 ### User Defined Functions Exercise 1
+Create a user-defined function that returns the percent that one number is of another.
+
+For example, if the first argument is 8 and the second argument is 10, the function should return the string "80.00%".
+
+The function should solve the "integer division" problem by allowing you to divide an integer by another integer, and yet get an accurate decimal result.
+
+_Hints:_
+
+Remember that you can implicitly convert an integer to a decimal by multiplying it by 1.0.
+
+You can format a decimal (say, 0.1) as a percent (10%) with the following code: FORMAT(0.1, 'P').
+
+Remember that the the return value of the function should be a text string.
+
+```
+CREATE FUNCTION dbo.ufnIntegerPercent(@Numerator INT, @Denominator INT)
+RETURNS VARCHAR(8)
+AS   
+BEGIN
+	DECLARE @Decimal FLOAT  = (@Numerator * 1.0) / @Denominator
+
+	RETURN FORMAT(@Decimal, 'P')
+END
+```
 ### User Defined Functions Exercise 2
+Store the maximum amount of vacation time for any individual employee in a variable.
+
+Then create a query that displays all rows and the following columns from the AdventureWorks2019.HumanResources.Employee table:
+
+- BusinessEntityID
+- JobTitle
+- VacationHours
+
+Then add a derived field called "PercentOfMaxVacation", which returns the percent an individual employees' vacation hours are of the maximum vacation hours for any employee.
+
+For example, the record for the employee with the most vacation hours should have a value of 100.00%, in this column.
+
+The derived field should make use of your user-defined function from the previous exercise, as well as your variable that stored the maximum vacation hours for any employee.
+
+```
+DECLARE @MaxVacationHours INT = (SELECT MAX(VacationHours) FROM AdventureWorks2022.HumanResources.Employee)
+
+SELECT
+	BusinessEntityID,
+	JobTitle,
+	VacationHours,
+	PercentOfMaxVacation = dbo.ufnIntegerPercent(VacationHours, @MaxVacationHours)
+
+FROM AdventureWorks2022.HumanResources.Employee
+```
+#### Results:
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_56.JPG)
 
 **[Back To The Top](#Overview-of-the-Section)**
 
 #
 ### Stored Procedures
+A stored procedure is a prepared SQL code that you can save, so the code can be reused over and over again. 
+
+So if you have an SQL query that you write over and over again, save it as a stored procedure, and then just call it to execute it.
 
 ### Stored Procedures Exercise
+Create a stored procedure called "OrdersAboveThreshold" that pulls in all sales orders with a total due amount above a threshold specified in a parameter called "@Threshold". The value for threshold will be supplied by the caller of the stored procedure.
+
+The proc should have two other parameters: "@StartYear" and "@EndYear" (both INT data types), also specified by the called of the procedure. All order dates returned by the proc should fall between these two years.
+
+**Create the procedure:**
+```
+CREATE PROCEDURE dbo.OrdersAboveThreshold(@Threshold MONEY, @StartYear INT, @EndYear INT)
+
+AS
+
+BEGIN
+	SELECT 
+		A.SalesOrderID,
+		A.OrderDate,
+		A.TotalDue
+
+	FROM  AdventureWorks2022.Sales.SalesOrderHeader A
+		JOIN AdventureWorks2022.dbo.Calendar B
+			ON A.OrderDate = B.DateValue
+
+	WHERE A.TotalDue >= @Threshold
+		AND B.YearNumber BETWEEN @StartYear AND @EndYear
+END
+```
+
+**Execute the procedure:**
+```
+EXEC dbo.OrdersAboveThreshold 10000, 2011, 2013
+```
 
 **[Back To The Top](#Overview-of-the-Section)**
 
