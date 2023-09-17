@@ -100,6 +100,40 @@ SELECT @PayPeriodEnd
 #
 ### Introducing User Defined Functions
 
+SQL Server allows us to create our methods called user defined functions. 
+
+For example, if we want to perform some complex calculations, then we can place them in a separate method and store them in the database. Whenever we need the calculation, we can call it. 
+
+**Code to create user defined function:**
+```
+CREATE FUNCTION dbo.ufnCurrentDate()
+
+RETURNS DATE
+
+AS
+
+BEGIN
+
+	RETURN CAST(GETDATE() AS DATE)
+
+END
+```
+
+**Query that calls user defined function**
+```
+SELECT
+	   SalesOrderID
+      ,OrderDate
+      ,DueDate
+      ,ShipDate
+	  ,Today = dbo.ufnCurrentDate()
+
+FROM AdventureWorks2022.Sales.SalesOrderHeader A
+
+WHERE YEAR(A.OrderDate) = 2011
+```
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_55.JPG)
+
 **[Back To The Top](#Overview-of-the-Section)**
 
 #
