@@ -82,3 +82,5 @@ SELECT @PayPeriodEnd
 ```
 #### Results:
 ![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_54.JPG)
+
+**[Back To The Top](#Overview-of-the-Section)**
