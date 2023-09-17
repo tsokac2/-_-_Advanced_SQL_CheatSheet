@@ -292,7 +292,7 @@ END
 ```
 EXEC dbo.OrdersAboveThreshold 10000, 2011, 2013
 ```
-
+#### Results:
 ![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_58.JPG)
 
 **[Back To The Top](#Overview-of-the-Section)**
