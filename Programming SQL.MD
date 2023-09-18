@@ -300,6 +300,21 @@ EXEC dbo.OrdersAboveThreshold 10000, 2011, 2013
 #
 ### Control Flow With IF Statements
 
+**IF Statement - basic example**
+```
+DECLARE @MyInput INT = 1
+
+IF @MyInput > 1
+	BEGIN
+		SELECT 'Hello World'
+	END
+ELSE
+	BEGIN
+		SELECT 'Farewell For Now!'
+	END
+```
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_59.JPG)
+
 ### Control Flow With IF Statements Exercise
 
 **[Back To The Top](#Overview-of-the-Section)**
