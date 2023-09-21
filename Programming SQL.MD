@@ -752,6 +752,51 @@ Modify your "NameSearch" procedure to accept a third argument - @MatchType, with
 **Hint:** 
 
 Use a series of IF statements to build out your WHERE clause based on the @MatchType parameter, then append this to the rest of your dynamic SQL before executing.
+```
+ALTER PROCEDURE dbo.NameSearch(@NameToSearch VARCHAR(100),@SearchPattern VARCHAR(100), @MatchType INT)
 
+AS
+
+BEGIN
+	DECLARE @NameColumn VARCHAR(100)
+	DECLARE @DynamicWhere VARCHAR(MAX)
+	DECLARE @DynamicSQL VARCHAR(MAX)
+
+	IF LOWER(@NameToSearch) = 'First'
+		SET @NameColumn = 'FirstName'
+
+	IF LOWER(@NameToSearch) = 'Middle'
+		SET @NameColumn = 'MiddleName'
+
+	IF LOWER(@NameToSearch) = 'Last'
+		SET @NameColumn = 'LastName'
+
+
+	IF @MatchType = 1
+		SET @DynamicWhere = ' = ' + '''' + @SearchPattern + ''''
+
+	IF @MatchType = 2
+		SET @DynamicWhere = ' LIKE ' + '''' + @SearchPattern + '%' + ''''
+
+	IF @MatchType = 3
+		SET @DynamicWhere = ' LIKE ' + '''' + '%' + @SearchPattern + ''''
+
+	IF @MatchType = 4
+		SET @DynamicWhere = ' LIKE ' + '''' + '%' + @SearchPattern + '%' + ''''
+
+
+	SET @DynamicSQL = 
+	'SELECT
+	*
+	FROM AdventureWorks2022.Person.Person
+	WHERE '
+
+	SET @DynamicSQL = @DynamicSQL + @NameColumn + @DynamicWhere
+
+	SELECT  @DynamicSQL
+
+	EXEC(@DynamicSQL)
+END
+```
 **[Back To The Top](#Overview-of-the-Section)**
 
