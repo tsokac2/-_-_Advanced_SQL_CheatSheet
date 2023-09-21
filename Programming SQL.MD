@@ -300,6 +300,8 @@ EXEC dbo.OrdersAboveThreshold 10000, 2011, 2013
 #
 ### Control Flow With IF Statements
 
+If statements (also called conditionals or selection) change the flow of control through the program so that some code is only run when something is true. In an if statement, if the condition is true then the next statement or a block of statements will execute.
+
 **IF Statement - basic example**
 ```
 DECLARE @MyInput INT = 1
@@ -315,6 +317,93 @@ ELSE
 ```
 ![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_59.JPG)
 
+
+#### IF Statement with Stored procedure example
+
+**Step 1 Create Basic (non-dynamic) stored procedure**
+```
+CREATE PROCEDURE dbo.OrdersReport
+
+AS
+
+BEGIN
+	SELECT
+		*
+	FROM (
+		SELECT 
+			ProductName = B.[Name],
+			LineTotalSum = SUM(A.LineTotal),
+			LineTotalSumRank = DENSE_RANK() OVER(ORDER BY SUM(A.LineTotal) DESC)
+
+		FROM AdventureWorks2022.Sales.SalesOrderDetail A
+			JOIN AdventureWorks2022.Production.Product B
+				ON A.ProductID = B.ProductID
+
+		GROUP BY
+			B.[Name]
+		) X
+
+	WHERE LineTotalSumRank <= 10
+END
+```
+
+**Step 2 Execute stored procedure**
+```
+EXEC dbo.OrdersReport
+```
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_60.JPG)
+
+**Step 3 Alter _dbo.OrdersReport_ stored procedure example with IF Statements**
+```
+ALTER PROCEDURE dbo.OrdersReport(@TopN INT, @OrderType INT)
+
+AS
+
+BEGIN
+
+	IF @OrderType = 1
+		BEGIN
+			SELECT
+				*
+			FROM (
+				SELECT 
+					ProductName = B.[Name],
+					LineTotalSum = SUM(A.LineTotal),
+					LineTotalSumRank = DENSE_RANK() OVER(ORDER BY SUM(A.LineTotal) DESC)
+
+				FROM AdventureWorks2022.Sales.SalesOrderDetail A
+					JOIN AdventureWorks2022.Production.Product B
+						ON A.ProductID = B.ProductID
+
+				GROUP BY
+					B.[Name]
+				) X
+
+			WHERE LineTotalSumRank <= @TopN
+		END
+	ELSE
+		BEGIN
+			SELECT
+				*
+			FROM (
+				SELECT 
+					ProductName = B.[Name],
+					LineTotalSum = SUM(A.LineTotal),
+					LineTotalSumRank = DENSE_RANK() OVER(ORDER BY SUM(A.LineTotal) DESC)
+
+				FROM AdventureWorks2022.Purchasing.PurchaseOrderDetail A
+					JOIN AdventureWorks2022.Production.Product B
+						ON A.ProductID = B.ProductID
+
+				GROUP BY
+					B.[Name]
+				) X
+
+			WHERE LineTotalSumRank <= @TopN
+		END
+END
+```
+
 ### Control Flow With IF Statements Exercise
 
 **[Back To The Top](#Overview-of-the-Section)**
@@ -323,6 +412,16 @@ ELSE
 ### Using Multiple IF Statements
 
 ### Using Multiple IF Statements Exercise
+
+Modify your "dbo.OrdersAboveThreshold" stored procedure once again, such that if a user supplies a value of 3 to the @OrderType parameter, the proc should return all sales AND purchase orders above the specified threshold, with order dates between the specified years.
+
+In this scenario, include an "OrderType" column to the procedure output. This column should have a value of "Sales" for records from the SalesOrderHeader table, and "Purchase" for records from the PurchaseOrderHeader table.
+
+**Hints:**
+- Convert your ELSE block to an IF block, so that you now have 3 independent IF blocks.
+- Make sure that your IF criteria are all mutually exclusive.
+- Use UNION ALL to "stack" the sales and purchase data.
+- Alias SalesOrderId/PurchaseOrderID as "OrderID" in their respective UNION-ed queries.
 
 **[Back To The Top](#Overview-of-the-Section)**
 
