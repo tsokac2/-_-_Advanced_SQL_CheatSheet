@@ -589,6 +589,83 @@ In this scenario, include an "OrderType" column to the procedure output. This co
 - Use UNION ALL to "stack" the sales and purchase data.
 - Alias SalesOrderId/PurchaseOrderID as "OrderID" in their respective UNION-ed queries.
 
+```
+ALTER PROCEDURE dbo.OrdersAboveThreshold(@Threshold MONEY, @StartYear INT, @EndYear INT, @OrderType INT)
+
+AS
+
+BEGIN
+	IF @OrderType = 1
+		BEGIN
+			SELECT 
+				A.SalesOrderID,
+				A.OrderDate,
+				A.TotalDue
+
+			FROM  AdventureWorks2022.Sales.SalesOrderHeader A
+				JOIN AdventureWorks2022.dbo.Calendar B
+					ON A.OrderDate = B.DateValue
+
+			WHERE A.TotalDue >= @Threshold
+				AND B.YearNumber BETWEEN @StartYear AND @EndYear
+
+			ORDER BY A.TotalDue DESC
+		END
+
+		IF @OrderType = 2
+			BEGIN
+				SELECT 
+					A.PurchaseOrderID,
+					A.OrderDate,
+					A.TotalDue
+
+				FROM  AdventureWorks2022.Purchasing.PurchaseOrderHeader A
+					JOIN AdventureWorks2022.dbo.Calendar B
+						ON A.OrderDate = B.DateValue
+
+				WHERE A.TotalDue >= @Threshold
+					AND B.YearNumber BETWEEN @StartYear AND @EndYear
+
+				ORDER BY A.TotalDue DESC
+			END
+
+		IF @OrderType = 3
+			BEGIN
+				SELECT 
+					OrderID = A.SalesOrderID,
+					OrderType = 'Sales',
+					A.OrderDate,
+					A.TotalDue
+
+				FROM  AdventureWorks2022.Sales.SalesOrderHeader A
+					JOIN AdventureWorks2022.dbo.Calendar B
+						ON A.OrderDate = B.DateValue
+
+				WHERE A.TotalDue >= @Threshold
+					AND B.YearNumber BETWEEN @StartYear AND @EndYear
+
+				UNION ALL
+
+				SELECT 
+					OrderID = A.PurchaseOrderID,
+					OrderType = 'Purchase',
+					A.OrderDate,
+					A.TotalDue
+
+				FROM  AdventureWorks2022.Purchasing.PurchaseOrderHeader A
+					JOIN AdventureWorks2022.dbo.Calendar B
+						ON A.OrderDate = B.DateValue
+
+				WHERE A.TotalDue >= @Threshold
+					AND B.YearNumber BETWEEN @StartYear AND @EndYear
+
+				ORDER BY TotalDue DESC
+			END
+END
+```
+#### Results:
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_64.JPG)
+
 **[Back To The Top](#Overview-of-the-Section)**
 
 #
