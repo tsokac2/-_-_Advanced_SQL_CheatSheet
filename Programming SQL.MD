@@ -14,7 +14,7 @@
 	* **[Control Flow With IF Statements Exercise](#Control-Flow-With-IF-Statements-Exercise)**
 * **[Using Multiple IF Statements](#Using-Multiple-IF-Statements)**
 	* **[Using Multiple IF Statements Exercise](#Using-Multiple-IF-Statements-Exercise)**
-* **[Dynamic SQL Part 1](#Dynamic-SQL-Part-1)**
+* **[Dynamic SQL Part 1](#Dynamic-SQL)**
 	* **[Dynamic SQL Exercise 1](#Dynamic-SQL-Exercise-1)**
 	* **[Dynamic SQL Exercise 2](#Dynamic-SQL-Exercise-2)**
 
@@ -667,7 +667,7 @@ END
 
 **[Back To The Top](#Overview-of-the-Section)**
 #
-### Dynamic SQL Part 1
+### Dynamic SQL
 
 Dynamic SQL is a programming technique that enables you to build SQL statements dynamically at runtime. 
 
