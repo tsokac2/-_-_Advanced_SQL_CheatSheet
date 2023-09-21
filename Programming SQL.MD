@@ -667,9 +667,23 @@ END
 ![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_64.JPG)
 
 **[Back To The Top](#Overview-of-the-Section)**
-
 #
 ### Dynamic SQL Part 1
+
+Dynamic SQL is a programming technique that enables you to build SQL statements dynamically at runtime. 
+
+You can create more general purpose, flexible applications by using dynamic SQL because the full text of a SQL statement may be unknown at compilation.
+
+```
+DECLARE @DynamicSQL VARCHAR(MAX)
+
+SET @DynamicSQL = 'SELECT TOP 100 * FROM AdventureWorks2022.Production.Product'
+
+SELECT @DynamicSQL
+
+EXEC(@DynamicSQL)
+```
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_65.JPG)
 
 **[Back To The Top](#Overview-of-the-Section)**
 
