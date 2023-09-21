@@ -11,6 +11,7 @@
 * **[Stored Procedures](#Stored-Procedures)**
 	* **[Stored Procedures Exercise](#Stored-Procedures-Exercise)**
 * **[Control Flow With IF Statements](#Control-Flow-With-IF-Statements)**
+	* **[Control Flow With IF Statements Exercise](#Control-Flow-With-IF-Statements-Exercise)**
 * **[Using Multiple IF Statements](#Using-Multiple-IF-Statements)**
 	* **[Using Multiple IF Statements Exercise](#Using-Multiple-IF-Statements-Exercise)**
 * **[Dynamic SQL Part 1](#Dynamic-SQL-Part-1)**
@@ -403,6 +404,12 @@ BEGIN
 		END
 END
 ```
+**Step 4 Calling the modified stored procedure**
+```
+EXEC dbo.OrdersReport 20,1
+```
+![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_61.JPG)
+**[Back To The Top](#Overview-of-the-Section)**
 
 ### Control Flow With IF Statements Exercise
 
