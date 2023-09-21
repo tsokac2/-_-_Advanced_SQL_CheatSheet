@@ -15,7 +15,6 @@
 * **[Using Multiple IF Statements](#Using-Multiple-IF-Statements)**
 	* **[Using Multiple IF Statements Exercise](#Using-Multiple-IF-Statements-Exercise)**
 * **[Dynamic SQL Part 1](#Dynamic-SQL-Part-1)**
-* **[Dynamic SQL Part 2](#Dynamic-SQL-Part-2)**
 	* **[Dynamic SQL Exercise 1](#Dynamic-SQL-Exercise-1)**
 	* **[Dynamic SQL Exercise 2](#Dynamic-SQL-Exercise-2)**
 
