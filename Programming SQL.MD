@@ -318,7 +318,6 @@ ELSE
 ```
 ![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_59.JPG)
 
-
 #### IF Statement with Stored procedure example
 
 **Step 1 Create Basic (non-dynamic) stored procedure**
@@ -347,7 +346,6 @@ BEGIN
 	WHERE LineTotalSumRank <= 10
 END
 ```
-
 **Step 2 Execute stored procedure**
 ```
 EXEC dbo.OrdersReport
@@ -409,6 +407,7 @@ END
 EXEC dbo.OrdersReport 20,1
 ```
 ![Section_04](https://github.com/tsokac2/-_-_Advanced_SQL_CheatSheet/blob/main/img/Section_04_E_61.JPG)
+
 **[Back To The Top](#Overview-of-the-Section)**
 
 ### Control Flow With IF Statements Exercise
