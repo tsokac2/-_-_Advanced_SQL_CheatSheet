@@ -4,6 +4,23 @@
 
 MySQL is an open-source relational database management system (RDBMS) that is widely used for storing and managing data. It is a popular choice for web applications, as it is easy to use, scalable, and reliable.
 
+Here are some core features of MySQL:
+- Open Source
+- Relational Database Management System (RDBMS)
+- Cross-Platform Compatibility
+- Scalability
+- High Performance
+- Data Security
+- Replication
+- Community and Support
+
+### Differentiate between DDL, DML, and DCL
+
+DDL, DML, and DCL are the three main types of SQL statements. 
+- ``DDL statements`` are used to define the structure of a database.
+- ``DML statements`` are used to manipulate data within a database.
+- ``DCL statements`` are used to control access to a database.
+
 ###  What are the different types of MySQL tables?
 
 The three main types of MySQL tables are:
@@ -49,6 +66,37 @@ MySQL has a wide variety of functions that can be used to manipulate and analyze
 - ``Stored procedures`` are precompiled SQL statements that can be stored in the database and executed later. 
 - ``Triggers`` are special types of stored procedures that are executed automatically when certain events occur, such as when a row is inserted, updated, or deleted.
 
+### How do you optimize MySQL performance?
+
+There are many ways to optimize MySQL performance, such as:
+
+- ``Indexing``: This involves creating indexes on frequently used columns, which can speed up data retrieval.
+- ``Partitioning``: This involves dividing a large table into smaller, more manageable partitions, which can improve performance.
+- ``Tuning the server``: This involves adjusting the server configuration settings to optimize performance.
+
+### How do you secure a MySQL database?
+
+It is important to secure a MySQL database to protect sensitive data from unauthorized access. Some of the best practices for securing a MySQL database include:
+
+- ``Setting a strong password``: This is the most important step in securing any database.
+- ``Disabling remote access``: This will prevent unauthorized users from accessing the database from outside the network.
+- ``Using strong authentication``: This involves using mechanisms such as SSL/TLS to encrypt data transmitted between the client and the server.
+- ``Regularly backing up the database``: This will help to recover from data loss in the event of a security breach.
+
+### What is normalization and why is it important?
+
+Normalization is the process of organizing data in a database to minimize data redundancy and improve data integrity. 
+It is an important concept for database design and performance.
+
+### What are indexes and how do they work in MySQL?
+
+Indexes are data ``structures`` that can be created on columns in MySQL tables. 
+They help to improve the ``performance of queries`` that involve frequently used columns. 
+
+``CREATE INDEX index_name ON table_name (column1, column2, ...);``
+
+When you perform a SELECT query that involves the indexed column(s), MySQL uses the index to quickly locate the rows that match the search criteria. 
+This is more efficient than scanning the entire table.
+``SELECT * FROM table_name WHERE indexed_column = 'search_value';``
+
 ### 
-
-
